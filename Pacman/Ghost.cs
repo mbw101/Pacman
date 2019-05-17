@@ -7,13 +7,14 @@ using System.Drawing;
 
 namespace Pacman
 {
-    public class PacMan
+    public class Ghost
     {
         private Rectangle rect;
         private int xSpeed, ySpeed;
-        private int lives;
+        public Color colour;
+        private string behavior;
 
-        public PacMan(int _x, int _y, int _size, int _xSpeed, int _ySpeed, int _lives)
+        public Ghost(int _x, int _y, int _size, int _xSpeed, int _ySpeed, string _behavior)
         {
             rect.X = _x;
             rect.Y = _y;
@@ -21,19 +22,15 @@ namespace Pacman
             rect.Height = _size;
             xSpeed = _xSpeed;
             ySpeed = _ySpeed;
-            lives = _lives;
+            behavior = _behavior;
         }
 
-        public void move()
+        public void move(PacMan player)
         {
+            // TODO: Move ghost based on the behavior and where
+            // pacman is
             rect.X += xSpeed;
             rect.Y += ySpeed;
-        }
-
-        public void move(int _xSpeed, int _ySpeed)
-        {
-            rect.X += _xSpeed;
-            rect.Y += _ySpeed;
         }
 
         public void setSpeed(int _xSpeed, int _ySpeed)
@@ -46,12 +43,6 @@ namespace Pacman
         {
             rect.X = _x;
             rect.Y = _y;
-        }
-
-        bool collision()
-        {
-            // TODO: Collision with pellets and ghosts
-            return false;
         }
     }
 }
