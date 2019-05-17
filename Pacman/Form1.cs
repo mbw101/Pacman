@@ -19,9 +19,13 @@ namespace Pacman
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MenuScreen ms = new MenuScreen();
+            GameScreen gs = new GameScreen();
+            this.Controls.Add(gs);
 
-            this.Controls.Add(ms);
+            // TODO: Finish menus
+            //MenuScreen ms = new MenuScreen();
+
+            //this.Controls.Add(ms);
         }
 
         public static void ChangeScreen(UserControl current, string next)
