@@ -14,9 +14,11 @@ namespace Pacman
     {
         // movement speed
         const int SPEED = 4;
+        const int startX = 600;
+        const int startY = 400;
 
         // characters
-        PacMan player = new PacMan(25, 25, 32, SPEED, 0, 3);
+        PacMan player = new PacMan(startX, startY, 32, -SPEED, 0, 3);
         List<Pellet> pellets = new List<Pellet>();
         List<Ghost> ghosts = new List<Ghost>();
         int counter = 0;
