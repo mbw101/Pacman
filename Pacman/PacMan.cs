@@ -9,7 +9,7 @@ namespace Pacman
 {
     public class PacMan
     {
-        private Rectangle rect;
+        public Rectangle rect;
         private int xSpeed, ySpeed;
         private int lives;
 
@@ -38,8 +38,18 @@ namespace Pacman
 
         public void setSpeed(int _xSpeed, int _ySpeed)
         {
-            xSpeed += _xSpeed;
-            ySpeed += _ySpeed;
+            xSpeed = _xSpeed;
+            ySpeed = _ySpeed;
+        }
+
+        public int getXSpeed()
+        {
+            return xSpeed;
+        }
+
+        public int getYSpeed()
+        {
+            return ySpeed;
         }
 
         public void setPosition(int _x, int _y)
