@@ -19,6 +19,9 @@ namespace Pacman
         PacMan player = new PacMan(25, 25, 32, SPEED, 0, 3);
         List<Pellet> pellets = new List<Pellet>();
         List<Ghost> ghosts = new List<Ghost>();
+        int counter = 0;
+        int previousCounter = 0;
+        bool animate = false;
 
         // pens, brushes, graphics
         SolidBrush sb = new SolidBrush(Color.Yellow);
@@ -51,7 +54,23 @@ namespace Pacman
                 player.setSpeed(SPEED, 0);
             }
 
+            // move pac-man
             player.move();
+
+            // increase counter
+            counter++;
+
+            // animation for mouth
+            if (counter - 10 > previousCounter && !animate)
+            {
+                animate = true;
+            }
+            else if (counter - 20 > previousCounter)
+            {
+                animate = false;
+
+                previousCounter = counter = 0;
+            }
 
             Refresh();
         }
@@ -59,24 +78,28 @@ namespace Pacman
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             // going right
-            if (player.getXSpeed() == SPEED)
+            if (player.getXSpeed() == SPEED && !animate)
             {
                 e.Graphics.FillPie(sb, player.rect, 30, 300);
             }
             // going left
-            else if (player.getXSpeed() == -SPEED)
+            else if (player.getXSpeed() == -SPEED && !animate)
             {
-                e.Graphics.FillPie(sb, player.rect, 200, 300);
+                e.Graphics.FillPie(sb, player.rect, 210, 300);
             }
             // going up
-            else if (player.getYSpeed() == -SPEED)
+            else if (player.getYSpeed() == -SPEED && !animate)
             {
                 e.Graphics.FillPie(sb, player.rect, 315, 265);
             }
             // going down
-            else if (player.getYSpeed() == SPEED)
+            else if (player.getYSpeed() == SPEED && !animate)
             {
-                e.Graphics.FillPie(sb, player.rect, 180, 280);
+                e.Graphics.FillPie(sb, player.rect, 150, 240);
+            }
+            else
+            {
+                e.Graphics.FillPie(sb, player.rect, 0, 360);
             }
         }
 
