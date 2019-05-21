@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Drawing;
 
 namespace Pacman
@@ -11,7 +12,7 @@ namespace Pacman
     {
         public Rectangle rect;
         private int xSpeed, ySpeed;
-        private int lives;
+        public int lives;
 
         public PacMan(int _x, int _y, int _size, int _xSpeed, int _ySpeed, int _lives)
         {
@@ -58,10 +59,28 @@ namespace Pacman
             rect.Y = _y;
         }
 
-        bool collision()
+        public bool collision(Pellet p)
         {
-            // TODO: Collision with pellets and ghosts
-            return false;
+            if (rect.IntersectsWith(p.rect))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool collision(Wall wall)
+        {
+            if (rect.IntersectsWith(wall.rect))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
