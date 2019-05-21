@@ -100,10 +100,37 @@ namespace Pacman
             {
                 if (player.collision(wall))
                 {
-                   if (wall.rect.X < player.rect.X)
-                   {
-                       
-                   }
+                    // there is a wall to the left
+                    if (wall.rect.X < player.rect.X)
+                    {
+                        if (player.getXSpeed() == SPEED)
+                        {
+                            player.move();
+                        }
+                        else if (player.getYSpeed() == SPEED)
+                        {
+                            player.move();
+                        }
+                        else if (player.getYSpeed() == -SPEED)
+                        {
+                            player.move();
+                        }
+                    }
+                    else if (wall.rect.X > player.rect.X)
+                    {
+                        if (player.getXSpeed() == -SPEED)
+                        {
+                            player.move();
+                        }
+                        else if (player.getYSpeed() == SPEED)
+                        {
+                            player.move();
+                        }
+                        else if (player.getYSpeed() == -SPEED)
+                        {
+                            player.move();
+                        }
+                    }
                 }
                 else
                 {
