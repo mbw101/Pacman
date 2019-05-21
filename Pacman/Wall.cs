@@ -7,19 +7,17 @@ using System.Drawing;
 
 namespace Pacman
 {
-    public class Pellet
+    public class Wall
     {
         public Rectangle rect;
-        public int score;
         public Color colour;
 
-        public Pellet(int _x, int _y, int _size, int _score, Color _colour)
+        public Wall(int _x, int _y, int _width, int _height, Color _colour)
         {
             rect.X = _x;
             rect.Y = _y;
-            rect.Width = _size;
-            rect.Height = _size;
-            score = _score;
+            rect.Width = _width;
+            rect.Height = _height;
             colour = _colour;
         }
     }

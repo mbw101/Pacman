@@ -16,10 +16,15 @@ namespace Pacman
         const int SPEED = 4;
         const int startX = 600;
         const int startY = 400;
+        int score = 0;
 
         // characters
         PacMan player = new PacMan(startX, startY, 32, -SPEED, 0, 3);
+        Font textFont;
+        
         List<Pellet> pellets = new List<Pellet>();
+        List<Pellet> removePellets = new List<Pellet>();
+        List<Wall> walls = new List<Wall>();
         List<Ghost> ghosts = new List<Ghost>();
         int counter = 0;
         int previousCounter = 0;
@@ -34,11 +39,25 @@ namespace Pacman
         public GameScreen()
         {
             InitializeComponent();
+
+            // create text graphics
+            textFont = new Font("Verdana", 18, FontStyle.Regular);
+
+            for (int i = 1; i < 16; i++)
+            {
+                Pellet p = new Pellet(50 + (i * 20), 100, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+
+            Wall w = new Wall(25, 25, 12, 100, Color.Blue);
+
+            walls.Add(w);
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             // game loop
+            // check key presses
             if (WDown)
             {
                 player.setSpeed(0, -SPEED);
@@ -56,8 +75,42 @@ namespace Pacman
                 player.setSpeed(SPEED, 0);
             }
 
-            // move pac-man
-            player.move();
+            // check all collisions
+            foreach (Pellet p in pellets)
+            {
+                // check collision
+                if (player.collision(p))
+                {
+                    removePellets.Add(p);
+
+                    score += p.score;
+                }
+            }
+
+            // remove all pellets that have to be removed
+            foreach (Pellet p in removePellets)
+            {
+                pellets.Remove(p);
+            }
+
+            // TODO: Check to see if the player's move is allowed
+
+            // Check collision with all level walls
+            foreach (Wall wall in walls)
+            {
+                if (player.collision(wall))
+                {
+                   if (wall.rect.X < player.rect.X)
+                   {
+                       
+                   }
+                }
+                else
+                {
+                    // move pac-man
+                    player.move();
+                }
+            }
 
             // increase counter
             counter++;
@@ -79,6 +132,8 @@ namespace Pacman
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
+            sb.Color = Color.Yellow;
+
             // going right
             if (player.getXSpeed() == SPEED && !animate)
             {
@@ -103,6 +158,30 @@ namespace Pacman
             {
                 e.Graphics.FillPie(sb, player.rect, 0, 360);
             }
+
+            // draw pellets
+            foreach (Pellet p in pellets)
+            {
+                sb.Color = p.colour;
+
+                e.Graphics.FillRectangle(sb, p.rect);
+            }
+
+            // Draw walls
+            foreach (Wall w in walls)
+            {
+                sb.Color = w.colour;
+
+                e.Graphics.FillRectangle(sb, w.rect);
+            }
+
+            // draw score
+            sb.Color = Color.White;
+
+            e.Graphics.DrawString("Score: " + score, textFont, sb, new Point(500, Height - 100));
+
+            // TODO: Draw lives
+            e.Graphics.DrawString("Lives: " + player.lives, textFont, sb, new Point(10, Height - 100));
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)

@@ -27,8 +27,6 @@ namespace Pacman
 
         public void move(PacMan player)
         {
-            // TODO: Move ghost based on the behavior and where
-            // pacman is
             rect.X += xSpeed;
             rect.Y += ySpeed;
         }
@@ -43,6 +41,20 @@ namespace Pacman
         {
             rect.X = _x;
             rect.Y = _y;
+        }
+
+        // TODO: In game loop when ghost collides with wall,
+        // change the direction of the ghost, so that it is always moving
+        public bool collision(Wall wall)
+        {
+            if (rect.IntersectsWith(wall.rect))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
