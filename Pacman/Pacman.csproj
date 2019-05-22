@@ -58,6 +58,7 @@
     <Compile Include="GameScreen.Designer.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ghost.cs" />
     <Compile Include="HighScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -71,8 +72,10 @@
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="PacMan.cs" />
+    <Compile Include="Pellet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wall.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

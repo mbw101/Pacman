@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Drawing;
 
 namespace Pacman
 {
-    public class PacMan
+    public class Ghost
     {
-        public Rectangle rect;
+        private Rectangle rect;
         private int xSpeed, ySpeed;
-        public int lives;
+        public Color colour;
+        private string behavior;
 
-        public PacMan(int _x, int _y, int _size, int _xSpeed, int _ySpeed, int _lives)
+        public Ghost(int _x, int _y, int _size, int _xSpeed, int _ySpeed, string _behavior)
         {
             rect.X = _x;
             rect.Y = _y;
@@ -22,35 +22,19 @@ namespace Pacman
             rect.Height = _size;
             xSpeed = _xSpeed;
             ySpeed = _ySpeed;
-            lives = _lives;
+            behavior = _behavior;
         }
 
-        public void move()
+        public void move(PacMan player)
         {
             rect.X += xSpeed;
             rect.Y += ySpeed;
         }
 
-        public void move(int _xSpeed, int _ySpeed)
-        {
-            rect.X += _xSpeed;
-            rect.Y += _ySpeed;
-        }
-
         public void setSpeed(int _xSpeed, int _ySpeed)
         {
-            xSpeed = _xSpeed;
-            ySpeed = _ySpeed;
-        }
-
-        public int getXSpeed()
-        {
-            return xSpeed;
-        }
-
-        public int getYSpeed()
-        {
-            return ySpeed;
+            xSpeed += _xSpeed;
+            ySpeed += _ySpeed;
         }
 
         public void setPosition(int _x, int _y)
@@ -59,18 +43,8 @@ namespace Pacman
             rect.Y = _y;
         }
 
-        public bool collision(Pellet p)
-        {
-            if (rect.IntersectsWith(p.rect))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
+        // TODO: In game loop when ghost collides with wall,
+        // change the direction of the ghost, so that it is always moving
         public bool collision(Wall wall)
         {
             if (rect.IntersectsWith(wall.rect))
