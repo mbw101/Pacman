@@ -9,12 +9,12 @@ namespace Pacman
 {
     public class Ghost
     {
-        private Rectangle rect;
+        public Rectangle rect;
         private int xSpeed, ySpeed;
         public Color colour;
         private string behavior;
 
-        public Ghost(int _x, int _y, int _size, int _xSpeed, int _ySpeed, string _behavior)
+        public Ghost(int _x, int _y, int _size, int _xSpeed, int _ySpeed, string _behavior, Color _colour)
         {
             rect.X = _x;
             rect.Y = _y;
@@ -23,12 +23,13 @@ namespace Pacman
             xSpeed = _xSpeed;
             ySpeed = _ySpeed;
             behavior = _behavior;
+            colour = _colour;
         }
 
         public void move(PacMan player)
         {
-            rect.X += xSpeed;
-            rect.Y += ySpeed;
+            rect.X += player.getYSpeed();
+            rect.Y += player.getXSpeed();
         }
 
         public void setSpeed(int _xSpeed, int _ySpeed)
