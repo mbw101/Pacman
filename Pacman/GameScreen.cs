@@ -14,12 +14,13 @@ namespace Pacman
     {
         // movement speed
         const int SPEED = 4;
+        const int GHOST_SPEED = 3;
         const int startX = 600;
         const int startY = 400;
         int score = 0;
 
         // characters
-        PacMan player = new PacMan(startX, startY, 32, -SPEED, 0, 3);
+        PacMan player = new PacMan(25, 200, 32, -SPEED, 0, 3);
         Font textFont;
         
         List<Pellet> pellets = new List<Pellet>();
@@ -29,6 +30,8 @@ namespace Pacman
         int counter = 0;
         int previousCounter = 0;
         bool animate = false;
+        int tmpx, tmpy; // temp variables for pac-man
+        int tmpXSpeed, tmpYSpeed;
 
         // pens, brushes, graphics
         SolidBrush sb = new SolidBrush(Color.Yellow);
@@ -43,11 +46,17 @@ namespace Pacman
             // create text graphics
             textFont = new Font("Verdana", 18, FontStyle.Regular);
 
+            tmpXSpeed = player.getXSpeed();
+            tmpYSpeed = player.getYSpeed();
+
             for (int i = 1; i < 16; i++)
             {
                 Pellet p = new Pellet(50 + (i * 20), 100, 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
+
+            Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, "ambush", Color.Red);
+            ghosts.Add(g);
 
             Wall w = new Wall(25, 25, 12, 100, Color.Blue);
 
@@ -61,18 +70,26 @@ namespace Pacman
             if (WDown)
             {
                 player.setSpeed(0, -SPEED);
+                tmpXSpeed = player.getXSpeed();
+                tmpYSpeed = player.getYSpeed();
             }
             else if (ADown)
             {
                 player.setSpeed(-SPEED, 0);
+                tmpXSpeed = player.getXSpeed();
+                tmpYSpeed = player.getYSpeed();
             }
             else if (SDown)
             {
                 player.setSpeed(0, SPEED);
+                tmpXSpeed = player.getXSpeed();
+                tmpYSpeed = player.getYSpeed();
             }
             else if (DDown)
             {
                 player.setSpeed(SPEED, 0);
+                tmpXSpeed = player.getXSpeed();
+                tmpYSpeed = player.getYSpeed();
             }
 
             // check all collisions
@@ -100,43 +117,37 @@ namespace Pacman
             {
                 if (player.collision(wall))
                 {
-                    // there is a wall to the left
-                    if (wall.rect.X < player.rect.X)
+                    if (tmpXSpeed == 0 && tmpYSpeed == 0)
                     {
-                        if (player.getXSpeed() == SPEED)
-                        {
-                            player.move();
-                        }
-                        else if (player.getYSpeed() == SPEED)
-                        {
-                            player.move();
-                        }
-                        else if (player.getYSpeed() == -SPEED)
-                        {
-                            player.move();
-                        }
+                        tmpXSpeed = player.getXSpeed();
+                        tmpYSpeed = player.getYSpeed();
                     }
-                    else if (wall.rect.X > player.rect.X)
-                    {
-                        if (player.getXSpeed() == -SPEED)
-                        {
-                            player.move();
-                        }
-                        else if (player.getYSpeed() == SPEED)
-                        {
-                            player.move();
-                        }
-                        else if (player.getYSpeed() == -SPEED)
-                        {
-                            player.move();
-                        }
-                    }
+
+                    player.setSpeed(0, 0);
+                    player.setPosition(tmpx, tmpy);
                 }
                 else
                 {
+                    tmpx = player.rect.X;
+                    tmpy = player.rect.Y;
+
+
                     // move pac-man
                     player.move();
+                    Rectangle tempRect = player.rect;
+
+                    if (wall.rect.IntersectsWith(tempRect))
+                    {
+                        player.setPosition(tmpx, tmpy);
+                    }
+                             
                 }
+            }
+
+            // move ghosts
+            foreach (Ghost g in ghosts)
+            {
+                g.move(player);
             }
 
             // increase counter
@@ -162,22 +173,22 @@ namespace Pacman
             sb.Color = Color.Yellow;
 
             // going right
-            if (player.getXSpeed() == SPEED && !animate)
+            if (tmpXSpeed == SPEED && !animate)
             {
                 e.Graphics.FillPie(sb, player.rect, 30, 300);
             }
             // going left
-            else if (player.getXSpeed() == -SPEED && !animate)
+            else if (tmpXSpeed == -SPEED && !animate)
             {
                 e.Graphics.FillPie(sb, player.rect, 210, 300);
             }
             // going up
-            else if (player.getYSpeed() == -SPEED && !animate)
+            else if (tmpYSpeed == -SPEED && !animate)
             {
                 e.Graphics.FillPie(sb, player.rect, 315, 265);
             }
             // going down
-            else if (player.getYSpeed() == SPEED && !animate)
+            else if (tmpYSpeed == SPEED && !animate)
             {
                 e.Graphics.FillPie(sb, player.rect, 150, 240);
             }
@@ -200,6 +211,14 @@ namespace Pacman
                 sb.Color = w.colour;
 
                 e.Graphics.FillRectangle(sb, w.rect);
+            }
+
+            // draw ghosts
+            foreach (Ghost g in ghosts)
+            {
+                sb.Color = g.colour;
+
+                e.Graphics.FillRectangle(sb, g.rect);
             }
 
             // draw score
