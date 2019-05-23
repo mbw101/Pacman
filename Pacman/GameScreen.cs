@@ -20,7 +20,7 @@ namespace Pacman
         int score = 0;
 
         // characters
-        PacMan player = new PacMan(25, 200, 32, -SPEED, 0, 3);
+        PacMan player = new PacMan(225, 200, 32, -SPEED, 0, 3);
         Font textFont;
         
         List<Pellet> pellets = new List<Pellet>();
@@ -29,7 +29,7 @@ namespace Pacman
         List<Ghost> ghosts = new List<Ghost>();
         int counter = 0;
         int previousCounter = 0;
-        bool animate = false;
+        bool animate = false, moved = false;
         int tmpx, tmpy; // temp variables for pac-man
         int tmpXSpeed, tmpYSpeed;
 
@@ -58,9 +58,13 @@ namespace Pacman
             Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, "ambush", Color.Red);
             ghosts.Add(g);
 
-            Wall w = new Wall(25, 25, 12, 100, Color.Blue);
+            Wall w = new Wall(25, 25, 12, 200, Color.Blue);
+            Wall w2 = new Wall(25, 25, 200, 12, Color.Blue);
 
+            walls.Add(w2);
             walls.Add(w);
+            //walls.Add(w3);
+            //walls.Add(w4);
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -113,6 +117,9 @@ namespace Pacman
             // TODO: Check to see if the player's move is allowed
 
             // Check collision with all level walls
+            // move pac-man
+            player.move();
+
             foreach (Wall wall in walls)
             {
                 if (player.collision(wall))
@@ -130,17 +137,14 @@ namespace Pacman
                 {
                     tmpx = player.rect.X;
                     tmpy = player.rect.Y;
+                    //player.move();
 
-
-                    // move pac-man
-                    player.move();
                     Rectangle tempRect = player.rect;
 
                     if (wall.rect.IntersectsWith(tempRect))
                     {
                         player.setPosition(tmpx, tmpy);
-                    }
-                             
+                    }                          
                 }
             }
 
