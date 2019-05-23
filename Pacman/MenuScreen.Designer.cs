@@ -29,37 +29,76 @@
         private void InitializeComponent()
         {
             this.titleLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.playLabel = new System.Windows.Forms.Label();
+            this.scoresLabel = new System.Windows.Forms.Label();
+            this.exitLabel = new System.Windows.Forms.Label();
+            this.coinLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("mono 07_65", 26.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Font = new System.Drawing.Font("mono 07_65", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLabel.ForeColor = System.Drawing.Color.White;
-            this.titleLabel.Location = new System.Drawing.Point(226, 54);
+            this.titleLabel.Location = new System.Drawing.Point(187, 27);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(277, 57);
+            this.titleLabel.Size = new System.Drawing.Size(376, 78);
             this.titleLabel.TabIndex = 0;
             this.titleLabel.Text = "PAC-MAN";
             // 
-            // label1
+            // playLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("mono 07_66", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(362, 229);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(224, 47);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.playLabel.AutoSize = true;
+            this.playLabel.Font = new System.Drawing.Font("mono 07_66", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playLabel.ForeColor = System.Drawing.Color.White;
+            this.playLabel.Location = new System.Drawing.Point(304, 242);
+            this.playLabel.Name = "playLabel";
+            this.playLabel.Size = new System.Drawing.Size(156, 47);
+            this.playLabel.TabIndex = 1;
+            this.playLabel.Text = "Play";
+            // 
+            // scoresLabel
+            // 
+            this.scoresLabel.AutoSize = true;
+            this.scoresLabel.Font = new System.Drawing.Font("mono 07_66", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoresLabel.ForeColor = System.Drawing.Color.White;
+            this.scoresLabel.Location = new System.Drawing.Point(192, 332);
+            this.scoresLabel.Name = "scoresLabel";
+            this.scoresLabel.Size = new System.Drawing.Size(360, 47);
+            this.scoresLabel.TabIndex = 2;
+            this.scoresLabel.Text = "Highscores";
+            // 
+            // exitLabel
+            // 
+            this.exitLabel.AutoSize = true;
+            this.exitLabel.Font = new System.Drawing.Font("mono 07_66", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exitLabel.ForeColor = System.Drawing.Color.White;
+            this.exitLabel.Location = new System.Drawing.Point(304, 421);
+            this.exitLabel.Name = "exitLabel";
+            this.exitLabel.Size = new System.Drawing.Size(156, 47);
+            this.exitLabel.TabIndex = 3;
+            this.exitLabel.Text = "Exit";
+            // 
+            // coinLabel
+            // 
+            this.coinLabel.AutoSize = true;
+            this.coinLabel.Font = new System.Drawing.Font("Orbit-B BT", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.coinLabel.ForeColor = System.Drawing.Color.White;
+            this.coinLabel.Location = new System.Drawing.Point(286, 174);
+            this.coinLabel.Name = "coinLabel";
+            this.coinLabel.Size = new System.Drawing.Size(174, 38);
+            this.coinLabel.TabIndex = 4;
+            this.coinLabel.Text = "Insert Coin";
             // 
             // MenuScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.coinLabel);
+            this.Controls.Add(this.exitLabel);
+            this.Controls.Add(this.scoresLabel);
+            this.Controls.Add(this.playLabel);
             this.Controls.Add(this.titleLabel);
             this.Name = "MenuScreen";
             this.Size = new System.Drawing.Size(800, 600);
@@ -71,6 +110,9 @@
         #endregion
 
         private System.Windows.Forms.Label titleLabel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label playLabel;
+        private System.Windows.Forms.Label scoresLabel;
+        private System.Windows.Forms.Label exitLabel;
+        private System.Windows.Forms.Label coinLabel;
     }
 }
