@@ -56,6 +56,7 @@
             this.playLabel.Size = new System.Drawing.Size(156, 47);
             this.playLabel.TabIndex = 1;
             this.playLabel.Text = "Play";
+            this.playLabel.Click += new System.EventHandler(this.playLabel_Click);
             // 
             // scoresLabel
             // 
@@ -78,6 +79,7 @@
             this.exitLabel.Size = new System.Drawing.Size(156, 47);
             this.exitLabel.TabIndex = 3;
             this.exitLabel.Text = "Exit";
+            this.exitLabel.Click += new System.EventHandler(this.exitLabel_Click);
             // 
             // coinLabel
             // 
