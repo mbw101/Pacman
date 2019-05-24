@@ -114,8 +114,6 @@ namespace Pacman
                 pellets.Remove(p);
             }
 
-            // TODO: Check to see if the player's move is allowed
-
             // Check collision with all level walls
             // move pac-man
             player.move();
