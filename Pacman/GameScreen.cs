@@ -29,7 +29,7 @@ namespace Pacman
         List<Ghost> ghosts = new List<Ghost>();
         int counter = 0;
         int previousCounter = 0;
-        bool animate = false, moved = false;
+        bool animate = false, collided = false;
         int tmpx, tmpy; // temp variables for pac-man
         int tmpXSpeed, tmpYSpeed;
 
@@ -116,36 +116,46 @@ namespace Pacman
 
             // Check collision with all level walls
             // move pac-man
-            player.move();
+            tmpx = player.rect.X;
+            tmpy = player.rect.Y;
+
+            if (!collided)
+            {
+                player.move();
+            }
 
             foreach (Wall wall in walls)
             {
                 if (player.collision(wall))
                 {
-                    if (tmpXSpeed == 0 && tmpYSpeed == 0)
-                    {
-                        tmpXSpeed = player.getXSpeed();
-                        tmpYSpeed = player.getYSpeed();
-                    }
+
+                    //tmpXSpeed = player.getXSpeed();
+                    //tmpYSpeed = player.getYSpeed();
+
+                    //if (tmpXSpeed == 0 && tmpYSpeed == 0)
+                    //{
+                    //    tmpXSpeed = player.getXSpeed();
+                    //    tmpYSpeed = player.getYSpeed();
+                    //}
 
                     player.setSpeed(0, 0);
                     player.setPosition(tmpx, tmpy);
+                    collided = true;
                 }
                 else
                 {
                     tmpx = player.rect.X;
                     tmpy = player.rect.Y;
-                    //player.move();
 
-                    Rectangle tempRect = player.rect;
+                    collided = false;
 
-                    if (wall.rect.IntersectsWith(tempRect))
-                    {
-                        player.setPosition(tmpx, tmpy);
-                    }                          
+                    //if (wall.rect.IntersectsWith(tempRect))
+                    //{
+                    //    player.setPosition(tmpx, tmpy);
+                    //}                          
                 }
             }
-
+            
             // move ghosts
             foreach (Ghost g in ghosts)
             {
@@ -225,10 +235,9 @@ namespace Pacman
 
             // draw score
             sb.Color = Color.White;
-
             e.Graphics.DrawString("Score: " + score, textFont, sb, new Point(500, Height - 100));
 
-            // TODO: Draw lives
+            // Draw lives
             e.Graphics.DrawString("Lives: " + player.lives, textFont, sb, new Point(10, Height - 100));
         }
 

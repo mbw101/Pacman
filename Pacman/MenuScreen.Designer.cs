@@ -54,7 +54,7 @@
             this.playLabel.Location = new System.Drawing.Point(304, 242);
             this.playLabel.Name = "playLabel";
             this.playLabel.Size = new System.Drawing.Size(156, 47);
-            this.playLabel.TabIndex = 1;
+            this.playLabel.TabIndex = 0;
             this.playLabel.Text = "Play";
             this.playLabel.Click += new System.EventHandler(this.playLabel_Click);
             // 
@@ -66,7 +66,7 @@
             this.scoresLabel.Location = new System.Drawing.Point(192, 332);
             this.scoresLabel.Name = "scoresLabel";
             this.scoresLabel.Size = new System.Drawing.Size(360, 47);
-            this.scoresLabel.TabIndex = 2;
+            this.scoresLabel.TabIndex = 1;
             this.scoresLabel.Text = "Highscores";
             // 
             // exitLabel
@@ -77,7 +77,7 @@
             this.exitLabel.Location = new System.Drawing.Point(304, 421);
             this.exitLabel.Name = "exitLabel";
             this.exitLabel.Size = new System.Drawing.Size(156, 47);
-            this.exitLabel.TabIndex = 3;
+            this.exitLabel.TabIndex = 2;
             this.exitLabel.Text = "Exit";
             this.exitLabel.Click += new System.EventHandler(this.exitLabel_Click);
             // 
@@ -104,6 +104,7 @@
             this.Controls.Add(this.titleLabel);
             this.Name = "MenuScreen";
             this.Size = new System.Drawing.Size(800, 600);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MenuScreen_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

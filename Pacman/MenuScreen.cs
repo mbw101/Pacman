@@ -26,5 +26,10 @@ namespace Pacman
         {
             Application.Exit();
         }
+
+        private void MenuScreen_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }
