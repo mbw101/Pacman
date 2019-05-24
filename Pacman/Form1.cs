@@ -21,11 +21,6 @@ namespace Pacman
         {
             MenuScreen ms = new MenuScreen();
             this.Controls.Add(ms);
-
-            // TODO: Finish menus
-            //MenuScreen ms = new MenuScreen();
-
-            //this.Controls.Add(ms);
         }
 
         public static void ChangeScreen(UserControl current, string next)

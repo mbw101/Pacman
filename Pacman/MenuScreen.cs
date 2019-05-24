@@ -16,5 +16,15 @@ namespace Pacman
         {
             InitializeComponent();
         }
+
+        private void playLabel_Click(object sender, EventArgs e)
+        {
+            Form1.ChangeScreen(this, "GameScreen");
+        }
+
+        private void exitLabel_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
