@@ -20,7 +20,7 @@ namespace Pacman
         int score = 0;
 
         // characters
-        PacMan player = new PacMan(225, 200, 32, -SPEED, 0, 3);
+        PacMan player = new PacMan(224, 200, 32, -SPEED, 0, 3);
         Font textFont;
         
         List<Pellet> pellets = new List<Pellet>();
@@ -29,8 +29,7 @@ namespace Pacman
         List<Ghost> ghosts = new List<Ghost>();
         int counter = 0;
         int previousCounter = 0;
-        bool animate = false, collided = false;
-        int tmpx, tmpy; // temp variables for pac-man
+        bool animate = false, collided = false, moved = false;
         int tmpXSpeed, tmpYSpeed;
 
         // pens, brushes, graphics
@@ -46,6 +45,11 @@ namespace Pacman
             // create text graphics
             textFont = new Font("Verdana", 18, FontStyle.Regular);
 
+            initLevel();            
+        }
+
+        public void initLevel()
+        {
             tmpXSpeed = player.getXSpeed();
             tmpYSpeed = player.getYSpeed();
 
@@ -59,7 +63,7 @@ namespace Pacman
             ghosts.Add(g);
 
             Wall w = new Wall(25, 25, 12, 200, Color.Blue);
-            Wall w2 = new Wall(25, 25, 200, 12, Color.Blue);
+            Wall w2 = new Wall(25, 25, 720, 12, Color.Blue);
 
             walls.Add(w2);
             walls.Add(w);
@@ -67,10 +71,14 @@ namespace Pacman
             //walls.Add(w4);
         }
 
+
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            // game loop
-            // check key presses
+            // create a temporary location of pac-man
+            int tempX = player.rect.X;
+            int tempY = player.rect.Y;
+
+            // set pac-man's direction
             if (WDown)
             {
                 player.setSpeed(0, -SPEED);
@@ -96,11 +104,14 @@ namespace Pacman
                 tmpYSpeed = player.getYSpeed();
             }
 
-            // check all collisions
+            // move pac-man
+            player.move();
+
+            // check collisions with pellets
             foreach (Pellet p in pellets)
             {
                 // check collision
-                if (player.collision(p))
+                if (player.Collision(p))
                 {
                     removePellets.Add(p);
 
@@ -114,52 +125,27 @@ namespace Pacman
                 pellets.Remove(p);
             }
 
-            // Check collision with all level walls
-            // move pac-man
-            tmpx = player.rect.X;
-            tmpy = player.rect.Y;
-
-            if (!collided)
-            {
-                player.move();
-            }
-
+            // check for collision with each wall
             foreach (Wall wall in walls)
             {
-                if (player.collision(wall))
+                if (player.Collision(wall))
                 {
-
-                    //tmpXSpeed = player.getXSpeed();
-                    //tmpYSpeed = player.getYSpeed();
-
-                    //if (tmpXSpeed == 0 && tmpYSpeed == 0)
-                    //{
-                    //    tmpXSpeed = player.getXSpeed();
-                    //    tmpYSpeed = player.getYSpeed();
-                    //}
-
-                    player.setSpeed(0, 0);
-                    player.setPosition(tmpx, tmpy);
+                    player.setPosition(tempX, tempY);
                     collided = true;
+
+                    // end loop
+                    break;
                 }
                 else
                 {
-                    tmpx = player.rect.X;
-                    tmpy = player.rect.Y;
-
-                    collided = false;
-
-                    //if (wall.rect.IntersectsWith(tempRect))
-                    //{
-                    //    player.setPosition(tmpx, tmpy);
-                    //}                          
+                    collided = false;                                
                 }
             }
-            
-            // move ghosts
-            foreach (Ghost g in ghosts)
+
+            // reset pac-man's positon when collided
+            if (collided)
             {
-                g.move(player);
+                player.setPosition(tempX, tempY);
             }
 
             // increase counter
