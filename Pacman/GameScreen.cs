@@ -53,22 +53,36 @@ namespace Pacman
             tmpXSpeed = player.getXSpeed();
             tmpYSpeed = player.getYSpeed();
 
-            for (int i = 1; i < 16; i++)
+            for (int i = 1; i < 36; i++)
             {
-                Pellet p = new Pellet(50 + (i * 20), 100, 10, 10, Color.Yellow);
+                Pellet p = new Pellet(32 + (i * 20), 50, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+
+            for (int i = 1; i < 25; i++)
+            {
+                Pellet p = new Pellet(52, 50 + (i * 20), 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
 
             Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, "ambush", Color.Red);
             ghosts.Add(g);
 
-            Wall w = new Wall(25, 25, 12, 200, Color.Blue);
-            Wall w2 = new Wall(25, 25, 720, 12, Color.Blue);
+            Wall w = new Wall(25, 25, 12, 240, Color.Blue);
+            Wall w2 = new Wall(25, 25, 740, 12, Color.Blue);
+            Wall w3 = new Wall(765, 25, 12, 240, Color.Blue);
+            Wall w4 = new Wall(25, 305, 12, 240, Color.Blue);
+            Wall w5 = new Wall(765, 305, 12, 240, Color.Blue);
+            Wall w6 = new Wall(25, 545, 752, 12, Color.Blue);
+            Wall w7 = new Wall(15, 305, 12, 15, Color.Yellow);
+            // TODO: Figure out a way to have pac-man teleport when he exits 
 
-            walls.Add(w2);
             walls.Add(w);
-            //walls.Add(w3);
-            //walls.Add(w4);
+            walls.Add(w2);
+            walls.Add(w3);
+            walls.Add(w4);
+            walls.Add(w5);
+            walls.Add(w6);
         }
 
 
@@ -77,6 +91,9 @@ namespace Pacman
             // create a temporary location of pac-man
             int tempX = player.rect.X;
             int tempY = player.rect.Y;
+
+            int tempX2 = ghosts[0].rect.X;
+            int tempY2 = ghosts[0].rect.Y;
 
             // set pac-man's direction
             if (WDown)
@@ -106,6 +123,11 @@ namespace Pacman
 
             // move pac-man
             player.move();
+
+            foreach (Ghost g in ghosts)
+            {
+                g.move();
+            }
 
             // check collisions with pellets
             foreach (Pellet p in pellets)
@@ -221,10 +243,10 @@ namespace Pacman
 
             // draw score
             sb.Color = Color.White;
-            e.Graphics.DrawString("Score: " + score, textFont, sb, new Point(500, Height - 100));
+            e.Graphics.DrawString("Score: " + score, textFont, sb, new Point(500, Height - 40));
 
             // Draw lives
-            e.Graphics.DrawString("Lives: " + player.lives, textFont, sb, new Point(10, Height - 100));
+            e.Graphics.DrawString("Lives: " + player.lives, textFont, sb, new Point(10, Height - 40));
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
