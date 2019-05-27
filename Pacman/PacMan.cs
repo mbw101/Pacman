@@ -59,7 +59,7 @@ namespace Pacman
             rect.Y = _y;
         }
 
-        public bool collision(Pellet p)
+        public bool Collision(Pellet p)
         {
             if (rect.IntersectsWith(p.rect))
             {
@@ -71,7 +71,7 @@ namespace Pacman
             }
         }
 
-        public bool collision(Wall wall)
+        public bool Collision(Wall wall)
         {
             if (rect.IntersectsWith(wall.rect))
             {

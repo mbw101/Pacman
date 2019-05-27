@@ -26,10 +26,10 @@ namespace Pacman
             colour = _colour;
         }
 
-        public void move(PacMan player)
+        public void move()
         {
-            rect.X += player.getYSpeed();
-            rect.Y += player.getXSpeed();
+            rect.X += xSpeed;
+            rect.Y += ySpeed;
         }
 
         public void setSpeed(int _xSpeed, int _ySpeed)
