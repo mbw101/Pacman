@@ -15,14 +15,21 @@ namespace Pacman
         public MenuScreen()
         {
             InitializeComponent();
+
+            Cursor.Hide();
         }
 
-        private void playLabel_Click(object sender, EventArgs e)
+        private void playerButton_Click(object sender, EventArgs e)
         {
             Form1.ChangeScreen(this, "GameScreen");
         }
 
-        private void exitLabel_Click(object sender, EventArgs e)
+        private void highButton_Click(object sender, EventArgs e)
+        {
+            // TODO: Show high screen
+        }
+
+        private void exitButton_Click_1(object sender, EventArgs e)
         {
             Application.Exit();
         }
