@@ -69,6 +69,8 @@
             this.playerButton.Text = "Play";
             this.playerButton.UseVisualStyleBackColor = true;
             this.playerButton.Click += new System.EventHandler(this.playerButton_Click);
+            this.playerButton.Enter += new System.EventHandler(this.playerButton_Enter);
+            this.playerButton.Leave += new System.EventHandler(this.playerButton_Leave);
             // 
             // highButton
             // 
@@ -83,6 +85,8 @@
             this.highButton.Text = "Highscores";
             this.highButton.UseVisualStyleBackColor = false;
             this.highButton.Click += new System.EventHandler(this.highButton_Click);
+            this.highButton.Enter += new System.EventHandler(this.highButton_Enter);
+            this.highButton.Leave += new System.EventHandler(this.highButton_Leave);
             // 
             // exitButton
             // 
@@ -96,6 +100,8 @@
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click_1);
+            this.exitButton.Enter += new System.EventHandler(this.exitButton_Enter);
+            this.exitButton.Leave += new System.EventHandler(this.exitButton_Leave);
             // 
             // MenuScreen
             // 
