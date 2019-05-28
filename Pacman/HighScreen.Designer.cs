@@ -45,6 +45,7 @@
             this.score3Label = new System.Windows.Forms.Label();
             this.score4Label = new System.Windows.Forms.Label();
             this.score5Label = new System.Windows.Forms.Label();
+            this.backButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -239,11 +240,26 @@
             this.score5Label.Text = "0000";
             this.score5Label.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // backButton
+            // 
+            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.backButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.backButton.Location = new System.Drawing.Point(67, 518);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(116, 35);
+            this.backButton.TabIndex = 0;
+            this.backButton.Text = "Go Back";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            this.backButton.Enter += new System.EventHandler(this.backButton_Enter);
+            this.backButton.Leave += new System.EventHandler(this.backButton_Leave);
+            // 
             // HighScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.score5Label);
             this.Controls.Add(this.score4Label);
             this.Controls.Add(this.score3Label);
@@ -286,5 +302,6 @@
         private System.Windows.Forms.Label score3Label;
         private System.Windows.Forms.Label score4Label;
         private System.Windows.Forms.Label score5Label;
+        private System.Windows.Forms.Button backButton;
     }
 }
