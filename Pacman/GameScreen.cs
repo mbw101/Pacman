@@ -27,6 +27,7 @@ namespace Pacman
         List<Pellet> removePellets = new List<Pellet>();
         List<Wall> walls = new List<Wall>();
         List<Ghost> ghosts = new List<Ghost>();
+         
         int counter = 0;
         int previousCounter = 0;
         bool animate = false, collided = false, moved = false;
@@ -68,12 +69,19 @@ namespace Pacman
             Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, "ambush", Color.Red);
             ghosts.Add(g);
 
+
+            /*Wall w = new Wall(25, 25, 12, 240, Color.Blue);
+
             Wall w = new Wall(25, 25, 12, 240, Color.Blue);
             Wall w2 = new Wall(25, 25, 740, 12, Color.Blue);
             Wall w3 = new Wall(765, 25, 12, 240, Color.Blue);
             Wall w4 = new Wall(25, 305, 12, 240, Color.Blue);
             Wall w5 = new Wall(765, 305, 12, 240, Color.Blue);
             Wall w6 = new Wall(25, 545, 752, 12, Color.Blue);
+
+            //Wall w7 = new Wall(15, 305, 12, 15, Color.Yellow);
+            // TODO: Figure out a way to have pac-man teleport when he exits 
+            
             Wall w7 = new Wall(15, 305, 12, 15, Color.Yellow);
             // TODO: Figure out a way to have pac-man teleport when he exits 
 
@@ -83,6 +91,8 @@ namespace Pacman
             walls.Add(w4);
             walls.Add(w5);
             walls.Add(w6);
+
+            */
         }
 
 
@@ -192,6 +202,23 @@ namespace Pacman
         {
             sb.Color = Color.Yellow;
 
+            switch (player.lives)
+            {
+                case 3:
+                    e.Graphics.FillPie(sb, 50, 560, 32, 32, 30, 300);
+                    e.Graphics.FillPie(sb, 100, 560, 32, 32, 30, 300);
+                    e.Graphics.FillPie(sb, 150, 560, 32, 32, 30, 300);
+                    break;
+                case 2:
+                    e.Graphics.FillPie(sb, 50, 560, 32, 32, 30, 300);
+                    e.Graphics.FillPie(sb, 100, 560, 32, 32, 30, 300);
+                    break;
+
+                case 1:
+                    e.Graphics.FillPie(sb, 50, 560, 32, 32, 30, 300);
+                    break;
+            }
+
             // going right
             if (tmpXSpeed == SPEED && !animate)
             {
@@ -246,7 +273,7 @@ namespace Pacman
             e.Graphics.DrawString("Score: " + score, textFont, sb, new Point(500, Height - 40));
 
             // Draw lives
-            e.Graphics.DrawString("Lives: " + player.lives, textFont, sb, new Point(10, Height - 40));
+            //e.Graphics.DrawString("Lives: " + player.lives, textFont, sb, new Point(10, Height - 40));
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
