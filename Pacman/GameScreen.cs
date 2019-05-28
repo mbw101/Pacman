@@ -70,21 +70,29 @@ namespace Pacman
             Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, "ambush", Color.Red);
             ghosts.Add(g);
 
+
             /*Wall w = new Wall(25, 25, 12, 240, Color.Blue);
+
+            Wall w = new Wall(25, 25, 12, 240, Color.Blue);
             Wall w2 = new Wall(25, 25, 740, 12, Color.Blue);
             Wall w3 = new Wall(765, 25, 12, 240, Color.Blue);
             Wall w4 = new Wall(25, 305, 12, 240, Color.Blue);
             Wall w5 = new Wall(765, 305, 12, 240, Color.Blue);
             Wall w6 = new Wall(25, 545, 752, 12, Color.Blue);
+
             //Wall w7 = new Wall(15, 305, 12, 15, Color.Yellow);
             // TODO: Figure out a way to have pac-man teleport when he exits 
             
+            Wall w7 = new Wall(15, 305, 12, 15, Color.Yellow);
+            // TODO: Figure out a way to have pac-man teleport when he exits 
+
             walls.Add(w);
             walls.Add(w2);
             walls.Add(w3);
             walls.Add(w4);
             walls.Add(w5);
             walls.Add(w6);
+
             */
         }
 

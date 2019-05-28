@@ -59,6 +59,7 @@
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Ghost.cs" />
+    <Compile Include="Highscores.cs" />
     <Compile Include="HighScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>

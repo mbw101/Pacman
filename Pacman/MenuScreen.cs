@@ -26,12 +26,42 @@ namespace Pacman
 
         private void highButton_Click(object sender, EventArgs e)
         {
-            // TODO: Show high screen
+            Form1.ChangeScreen(this, "HighScreen");
         }
 
         private void exitButton_Click_1(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void playerButton_Enter(object sender, EventArgs e)
+        {
+            playerButton.BackColor = Color.DimGray;
+        }
+
+        private void playerButton_Leave(object sender, EventArgs e)
+        {
+            playerButton.BackColor = Color.Black;
+        }
+
+        private void highButton_Leave(object sender, EventArgs e)
+        {
+            highButton.BackColor = Color.Black;
+        }
+
+        private void highButton_Enter(object sender, EventArgs e)
+        {
+            highButton.BackColor = Color.DimGray;
+        }
+
+        private void exitButton_Enter(object sender, EventArgs e)
+        {
+            exitButton.BackColor = Color.DimGray;
+        }
+
+        private void exitButton_Leave(object sender, EventArgs e)
+        {
+            exitButton.BackColor = Color.Black;
         }
     }
 }
