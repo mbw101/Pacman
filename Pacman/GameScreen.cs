@@ -20,7 +20,7 @@ namespace Pacman
         int score = 0;
 
         // characters
-        PacMan player = new PacMan(224, 200, 32, -SPEED, 0, 3);
+        PacMan player = new PacMan(686, 214, 32, -SPEED, 0, 3);
         Font textFont;
         
         List<Pellet> pellets = new List<Pellet>();
@@ -38,6 +38,7 @@ namespace Pacman
 
         // player controls
         Boolean WDown, ADown, SDown, DDown;
+
 
         public GameScreen()
         {
