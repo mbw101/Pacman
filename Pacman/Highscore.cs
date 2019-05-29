@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace Pacman
 {
-    public class Highscores
+    public class Highscore
     {
         public string name;
         public int score;
 
-        
+        public Highscore(string _name, int _score)
+        {
+            name = _name;
+            score = _score;
+        }
     }
 }

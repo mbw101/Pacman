@@ -11,10 +11,11 @@ namespace Pacman
     {
         public Rectangle rect;
         private int xSpeed, ySpeed;
+        public int score;
         public Color colour;
         private string behavior;
 
-        public Ghost(int _x, int _y, int _size, int _xSpeed, int _ySpeed, string _behavior, Color _colour)
+        public Ghost(int _x, int _y, int _size, int _xSpeed, int _ySpeed, int _score, string _behavior, Color _colour)
         {
             rect.X = _x;
             rect.Y = _y;
@@ -24,6 +25,7 @@ namespace Pacman
             ySpeed = _ySpeed;
             behavior = _behavior;
             colour = _colour;
+            score = _score;
         }
 
         public void move()
