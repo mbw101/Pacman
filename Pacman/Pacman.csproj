@@ -122,6 +122,9 @@
     <Content Include="Resources\highscores.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\pacman_death.wav" />
+    <None Include="Resources\pacman_chomp.wav" />
+    <None Include="Resources\pacman_beginning.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

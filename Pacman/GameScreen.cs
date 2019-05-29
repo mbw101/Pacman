@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 using System.Xml;
 
 namespace Pacman
@@ -23,6 +24,9 @@ namespace Pacman
         // characters
         PacMan player = new PacMan(686, 214, 32, -SPEED, 0, 3);
         Font textFont;
+
+        // sounds
+        SoundPlayer death = new SoundPlayer(Properties.Resources.pacman_death);
         
         List<Pellet> pellets = new List<Pellet>();
         List<Pellet> removePellets = new List<Pellet>();
@@ -97,8 +101,6 @@ namespace Pacman
             */
         }
 
-        
-
         public void saveHighscores()
         {
             XmlWriter writer = XmlWriter.Create("Resources//highscores.xml");
@@ -106,6 +108,9 @@ namespace Pacman
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            death.Play();
+            death.Stop();
+
             // create a temporary location of pac-man
             int tempX = player.rect.X;
             int tempY = player.rect.Y;
