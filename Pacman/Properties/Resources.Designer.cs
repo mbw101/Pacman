@@ -59,5 +59,40 @@ namespace Pacman.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;highscores&gt;
+        ///  &lt;player&gt;
+        ///    &lt;name&gt;AAA&lt;/name&gt;
+        ///    &lt;score&gt;0&lt;/score&gt;
+        ///  &lt;/player&gt;
+        ///  
+        ///  &lt;player&gt;
+        ///    &lt;name&gt;BBB&lt;/name&gt;
+        ///    &lt;score&gt;15&lt;/score&gt;
+        ///  &lt;/player&gt;
+        ///  
+        ///  &lt;player&gt;
+        ///    &lt;name&gt;CCC&lt;/name&gt;
+        ///    &lt;score&gt;9000&lt;/score&gt;
+        ///  &lt;/player&gt;
+        ///
+        ///  &lt;player&gt;
+        ///    &lt;name&gt;DDD&lt;/name&gt;
+        ///    &lt;score&gt;18000&lt;/score&gt;
+        ///  &lt;/player&gt;
+        ///
+        ///  &lt;player&gt;
+        ///    &lt;name&gt;EEE&lt;/name&gt;
+        ///    &lt;score&gt;2000&lt;/score&gt;
+        ///  &lt;/player&gt;
+        ///&lt;/highscores&gt;
+        ///.
+        /// </summary>
+        internal static string highscores {
+            get {
+                return ResourceManager.GetString("highscores", resourceCulture);
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Pacman
 {
@@ -67,7 +68,7 @@ namespace Pacman
                 pellets.Add(p);
             }
 
-            Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, "ambush", Color.Red);
+            Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, 200, "ambush", Color.Red);
             ghosts.Add(g);
 
 
@@ -96,6 +97,12 @@ namespace Pacman
             */
         }
 
+        
+
+        public void saveHighscores()
+        {
+            XmlWriter writer = XmlWriter.Create("Resources//highscores.xml");
+        }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {

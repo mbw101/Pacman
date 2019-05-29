@@ -1,0 +1,26 @@
+﻿<highscores>
+  <player>
+    <name>AAA</name>
+    <score>200000</score>
+  </player>
+  
+  <player>
+    <name>BBB</name>
+    <score>15</score>
+  </player>
+  
+  <player>
+    <name>CCC</name>
+    <score>9000</score>
+  </player>
+
+  <player>
+    <name>DDD</name>
+    <score>18000</score>
+  </player>
+
+  <player>
+    <name>EEE</name>
+    <score>2000</score>
+  </player>
+</highscores>
