@@ -64,7 +64,7 @@ namespace Pacman.Properties {
         ///   Looks up a localized string similar to &lt;highscores&gt;
         ///  &lt;player&gt;
         ///    &lt;name&gt;AAA&lt;/name&gt;
-        ///    &lt;score&gt;200000&lt;/score&gt;
+        ///    &lt;score&gt;2000&lt;/score&gt;
         ///  &lt;/player&gt;
         ///  
         ///  &lt;player&gt;
@@ -79,7 +79,7 @@ namespace Pacman.Properties {
         ///
         ///  &lt;player&gt;
         ///    &lt;name&gt;DDD&lt;/name&gt;
-        ///    &lt;score&gt;18000&lt;/score&gt;
+        ///    &lt;score&gt;1800&lt;/score&gt;
         ///  &lt;/player&gt;
         ///
         ///  &lt;player&gt;

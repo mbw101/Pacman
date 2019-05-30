@@ -53,7 +53,7 @@ namespace Pacman
                 }
             }
 
-            highscores = highscores.OrderBy(x => x.score).ThenBy(XmlAttribute => XmlAttribute.name).ToList();
+            highscores = highscores.OrderByDescending(x => x.score).ThenBy(x => x.name).ToList();
 
             reader.Close();
         }

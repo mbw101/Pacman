@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using System.Xml;
+using System.Threading;
 
 namespace Pacman
 {
     public partial class GameScreen : UserControl
     {
         // movement speed
-        const int SPEED = 4;
-        const int GHOST_SPEED = 3;
+        const int SPEED = 3;
+        const int GHOST_SPEED = 2;
         const int startX = 600;
         const int startY = 400;
         int score = 0;
@@ -52,7 +53,7 @@ namespace Pacman
             // create text graphics
             textFont = new Font("Verdana", 18, FontStyle.Regular);
 
-            initLevel();            
+            initLevel();
         }
 
         public void initLevel()
@@ -73,6 +74,7 @@ namespace Pacman
             }
 
             Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, 200, "ambush", Color.Red);
+            ghosts.Clear();
             ghosts.Add(g);
 
 
@@ -108,9 +110,6 @@ namespace Pacman
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            death.Play();
-            death.Stop();
-
             // create a temporary location of pac-man
             int tempX = player.rect.X;
             int tempY = player.rect.Y;
@@ -150,6 +149,17 @@ namespace Pacman
             foreach (Ghost g in ghosts)
             {
                 g.move();
+
+                if (player.Collision(g))
+                {
+                    death.Play();
+
+                    Thread.Sleep(2000);
+
+                    initLevel();
+
+                    gameTimer.Enabled = false;
+                }
             }
 
             // check collisions with pellets
