@@ -43,6 +43,14 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.cageDoorLabel = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // gameTimer
@@ -80,7 +88,7 @@
             this.label4.BackColor = System.Drawing.Color.Blue;
             this.label4.Location = new System.Drawing.Point(688, 350);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 98);
+            this.label4.Size = new System.Drawing.Size(32, 96);
             this.label4.TabIndex = 3;
             // 
             // label5
@@ -94,7 +102,7 @@
             // label6
             // 
             this.label6.BackColor = System.Drawing.Color.Blue;
-            this.label6.Location = new System.Drawing.Point(393, 30);
+            this.label6.Location = new System.Drawing.Point(384, 30);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(16, 100);
             this.label6.TabIndex = 5;
@@ -118,7 +126,7 @@
             // label9
             // 
             this.label9.BackColor = System.Drawing.Color.Yellow;
-            this.label9.Location = new System.Drawing.Point(588, 442);
+            this.label9.Location = new System.Drawing.Point(515, 98);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(32, 32);
             this.label9.TabIndex = 8;
@@ -126,9 +134,9 @@
             // label10
             // 
             this.label10.BackColor = System.Drawing.Color.Blue;
-            this.label10.Location = new System.Drawing.Point(686, 64);
+            this.label10.Location = new System.Drawing.Point(686, 66);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(64, 148);
+            this.label10.Size = new System.Drawing.Size(62, 144);
             this.label10.TabIndex = 9;
             // 
             // label11
@@ -142,7 +150,7 @@
             // label12
             // 
             this.label12.BackColor = System.Drawing.Color.Blue;
-            this.label12.Location = new System.Drawing.Point(752, 416);
+            this.label12.Location = new System.Drawing.Point(752, 414);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(32, 32);
             this.label12.TabIndex = 11;
@@ -150,16 +158,88 @@
             // label13
             // 
             this.label13.BackColor = System.Drawing.Color.Blue;
-            this.label13.Location = new System.Drawing.Point(638, 480);
+            this.label13.Location = new System.Drawing.Point(515, 480);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(112, 16);
+            this.label13.Size = new System.Drawing.Size(235, 16);
             this.label13.TabIndex = 12;
+            // 
+            // label15
+            // 
+            this.label15.BackColor = System.Drawing.Color.Blue;
+            this.label15.Location = new System.Drawing.Point(622, 160);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(32, 100);
+            this.label15.TabIndex = 14;
+            // 
+            // label16
+            // 
+            this.label16.BackColor = System.Drawing.Color.Blue;
+            this.label16.Location = new System.Drawing.Point(464, 232);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(16, 100);
+            this.label16.TabIndex = 15;
+            // 
+            // label17
+            // 
+            this.label17.BackColor = System.Drawing.Color.Blue;
+            this.label17.Location = new System.Drawing.Point(336, 316);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(128, 16);
+            this.label17.TabIndex = 16;
+            // 
+            // label14
+            // 
+            this.label14.BackColor = System.Drawing.Color.Blue;
+            this.label14.Location = new System.Drawing.Point(320, 232);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(16, 100);
+            this.label14.TabIndex = 17;
+            // 
+            // label18
+            // 
+            this.label18.BackColor = System.Drawing.Color.Blue;
+            this.label18.Location = new System.Drawing.Point(336, 232);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(40, 16);
+            this.label18.TabIndex = 18;
+            // 
+            // label19
+            // 
+            this.label19.BackColor = System.Drawing.Color.Blue;
+            this.label19.Location = new System.Drawing.Point(424, 232);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(40, 16);
+            this.label19.TabIndex = 19;
+            // 
+            // cageDoorLabel
+            // 
+            this.cageDoorLabel.BackColor = System.Drawing.Color.White;
+            this.cageDoorLabel.Location = new System.Drawing.Point(376, 236);
+            this.cageDoorLabel.Name = "cageDoorLabel";
+            this.cageDoorLabel.Size = new System.Drawing.Size(48, 10);
+            this.cageDoorLabel.TabIndex = 20;
+            // 
+            // label20
+            // 
+            this.label20.BackColor = System.Drawing.Color.Blue;
+            this.label20.Location = new System.Drawing.Point(622, 416);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(32, 64);
+            this.label20.TabIndex = 21;
             // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.cageDoorLabel);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -199,5 +279,13 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label cageDoorLabel;
+        private System.Windows.Forms.Label label20;
     }
 }
