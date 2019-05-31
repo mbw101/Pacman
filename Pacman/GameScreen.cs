@@ -7,15 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 using System.Xml;
+using System.Threading;
 
 namespace Pacman
 {
     public partial class GameScreen : UserControl
     {
         // movement speed
-        const int SPEED = 4;
-        const int GHOST_SPEED = 3;
+        const int SPEED = 3;
+        const int GHOST_SPEED = 2;
         const int startX = 600;
         const int startY = 400;
         int score = 0;
@@ -23,6 +25,9 @@ namespace Pacman
         // characters
         PacMan player = new PacMan(686, 214, 32, -SPEED, 0, 3);
         Font textFont;
+
+        // sounds
+        SoundPlayer death = new SoundPlayer(Properties.Resources.pacman_death);
         
         List<Pellet> pellets = new List<Pellet>();
         List<Pellet> removePellets = new List<Pellet>();
@@ -48,7 +53,7 @@ namespace Pacman
             // create text graphics
             textFont = new Font("Verdana", 18, FontStyle.Regular);
 
-            initLevel();            
+            initLevel();
         }
 
         public void initLevel()
@@ -69,6 +74,8 @@ namespace Pacman
             }
 
             Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, 200, "ambush", Color.Red);
+
+            ghosts.Clear();
             ghosts.Add(g);
 
 
@@ -96,8 +103,6 @@ namespace Pacman
 
             */
         }
-
-        
 
         public void saveHighscores()
         {
@@ -145,6 +150,17 @@ namespace Pacman
             foreach (Ghost g in ghosts)
             {
                 g.move();
+
+                if (player.Collision(g))
+                {
+                    death.Play();
+
+                    Thread.Sleep(2000);
+
+                    initLevel();
+
+                    gameTimer.Enabled = false;
+                }
             }
 
             // check collisions with pellets

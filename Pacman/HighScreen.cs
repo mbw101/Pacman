@@ -14,6 +14,8 @@ namespace Pacman
     public partial class HighScreen : UserControl
     {
         public static List<Highscore> highscores = new List<Highscore>();
+        public static List<int> scores = new List<int>();
+        public static List<string> initials = new List<string>();
 
         public HighScreen()
         {
@@ -39,13 +41,26 @@ namespace Pacman
                 if (score != "")
                 {
                     int scoreInt = Convert.ToInt32(score);
+
+                    scores.Add(scoreInt);
+                    initials.Add(name);
+
+                    scores.Sort();
+
                     Highscore hs = new Highscore(name, scoreInt);
 
                     highscores.Add(hs);
                 }
             }
 
+            highscores = highscores.OrderByDescending(x => x.score).ThenBy(x => x.name).ToList();
+
             reader.Close();
+        }
+
+        public void saveHighscores()
+        {
+            // TODO: Save highscores
         }
 
         public void displayHighscores()

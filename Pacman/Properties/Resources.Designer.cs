@@ -64,7 +64,7 @@ namespace Pacman.Properties {
         ///   Looks up a localized string similar to &lt;highscores&gt;
         ///  &lt;player&gt;
         ///    &lt;name&gt;AAA&lt;/name&gt;
-        ///    &lt;score&gt;0&lt;/score&gt;
+        ///    &lt;score&gt;2000&lt;/score&gt;
         ///  &lt;/player&gt;
         ///  
         ///  &lt;player&gt;
@@ -79,7 +79,8 @@ namespace Pacman.Properties {
         ///
         ///  &lt;player&gt;
         ///    &lt;name&gt;DDD&lt;/name&gt;
-        ///    &lt;score&gt;18000&lt;/score&gt;
+        ///    &lt;score&gt;1800&lt;/score&gt;
+
         ///  &lt;/player&gt;
         ///
         ///  &lt;player&gt;
@@ -92,6 +93,33 @@ namespace Pacman.Properties {
         internal static string highscores {
             get {
                 return ResourceManager.GetString("highscores", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream pacman_beginning {
+            get {
+                return ResourceManager.GetStream("pacman_beginning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream pacman_chomp {
+            get {
+                return ResourceManager.GetStream("pacman_chomp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream pacman_death {
+            get {
+                return ResourceManager.GetStream("pacman_death", resourceCulture);
             }
         }
     }
