@@ -1,6 +1,6 @@
 ﻿namespace Pacman
 {
-    partial class nameScreen
+    partial class NameScreen
     {
         /// <summary> 
         /// Required designer variable.
@@ -38,9 +38,9 @@
             // firstLabel
             // 
             this.firstLabel.AutoSize = true;
-            this.firstLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.firstLabel.BackColor = System.Drawing.Color.AliceBlue;
             this.firstLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstLabel.Location = new System.Drawing.Point(69, 239);
+            this.firstLabel.Location = new System.Drawing.Point(187, 239);
             this.firstLabel.Name = "firstLabel";
             this.firstLabel.Size = new System.Drawing.Size(109, 108);
             this.firstLabel.TabIndex = 0;
@@ -51,7 +51,7 @@
             this.secondLabel.AutoSize = true;
             this.secondLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.secondLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.secondLabel.Location = new System.Drawing.Point(228, 239);
+            this.secondLabel.Location = new System.Drawing.Point(335, 239);
             this.secondLabel.Name = "secondLabel";
             this.secondLabel.Size = new System.Drawing.Size(109, 108);
             this.secondLabel.TabIndex = 1;
@@ -62,7 +62,7 @@
             this.thirdLabel.AutoSize = true;
             this.thirdLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.thirdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.thirdLabel.Location = new System.Drawing.Point(398, 239);
+            this.thirdLabel.Location = new System.Drawing.Point(485, 239);
             this.thirdLabel.Name = "thirdLabel";
             this.thirdLabel.Size = new System.Drawing.Size(109, 108);
             this.thirdLabel.TabIndex = 2;
@@ -70,11 +70,12 @@
             // 
             // saveButton
             // 
+            this.saveButton.Enabled = false;
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.Location = new System.Drawing.Point(613, 511);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(147, 46);
-            this.saveButton.TabIndex = 0;
+            this.saveButton.TabIndex = 3;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
             // 
@@ -89,7 +90,7 @@
             this.scoreLabel.TabIndex = 4;
             this.scoreLabel.Text = "Your score is ";
             // 
-            // nameScreen
+            // NameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -99,8 +100,9 @@
             this.Controls.Add(this.thirdLabel);
             this.Controls.Add(this.secondLabel);
             this.Controls.Add(this.firstLabel);
-            this.Name = "nameScreen";
+            this.Name = "NameScreen";
             this.Size = new System.Drawing.Size(800, 600);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.NameScreen_PreviewKeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

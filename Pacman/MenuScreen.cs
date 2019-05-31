@@ -16,7 +16,7 @@ namespace Pacman
         {
             InitializeComponent();
 
-            Cursor.Hide();
+            //Cursor.Hide();
         }
 
         private void playerButton_Click(object sender, EventArgs e)

@@ -152,13 +152,13 @@ namespace Pacman
 
                 if (player.Collision(g))
                 {
-                    death.Play();
+                    //death.Play();
 
-                    Thread.Sleep(2000);
+                    //Thread.Sleep(2000);
 
-                    initLevel();
+                    //initLevel();
 
-                    gameTimer.Enabled = false;
+                    //gameTimer.Enabled = false;
                 }
             }
 
@@ -314,6 +314,10 @@ namespace Pacman
                     break;
                 case Keys.S:
                     SDown = true;
+                    break;
+                case Keys.C:
+                    Form1.ChangeScreen(this, "NameScreen");
+                    gameTimer.Enabled = false;
                     break;
                 default:
                     break;
