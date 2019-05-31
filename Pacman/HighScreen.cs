@@ -14,7 +14,6 @@ namespace Pacman
     public partial class HighScreen : UserControl
     {
         public static List<Highscore> highscores = new List<Highscore>();
-
         public static List<int> scores = new List<int>();
         public static List<string> initials = new List<string>();
 
@@ -42,6 +41,7 @@ namespace Pacman
                 if (score != "")
                 {
                     int scoreInt = Convert.ToInt32(score);
+
                     scores.Add(scoreInt);
                     initials.Add(name);
 
