@@ -72,6 +72,12 @@
     <Compile Include="MenuScreen.Designer.cs">
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="nameScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="nameScreen.Designer.cs">
+      <DependentUpon>nameScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="PacMan.cs" />
     <Compile Include="Pellet.cs" />
     <Compile Include="Program.cs" />
@@ -88,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuScreen.resx">
       <DependentUpon>MenuScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="nameScreen.resx">
+      <DependentUpon>nameScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -122,6 +131,9 @@
     <Content Include="Resources\highscores.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\pacman_death.wav" />
+    <None Include="Resources\pacman_chomp.wav" />
+    <None Include="Resources\pacman_beginning.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -82,5 +82,17 @@ namespace Pacman
                 return false;
             }
         }
+
+        public bool Collision(Ghost g)
+        {
+            if (rect.IntersectsWith(g.rect))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
