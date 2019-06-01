@@ -59,9 +59,14 @@ namespace Pacman
 
         public void initLevel()
         {
+            // reset score
+            score = 0;
+
+            // set the temp x and y of pacman
             tmpXSpeed = player.getXSpeed();
             tmpYSpeed = player.getYSpeed();
 
+            // create pellets
             for (int i = 1; i < 36; i++)
             {
                 Pellet p = new Pellet(32 + (i * 20), 50, 10, 10, Color.Yellow);
@@ -74,12 +79,13 @@ namespace Pacman
                 pellets.Add(p);
             }
 
+            // create ghosts
             Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, 200, "ambush", Color.Red);
 
             ghosts.Clear();
             ghosts.Add(g);
 
-
+            // create walls
             /*Wall w = new Wall(25, 25, 12, 240, Color.Blue);
 
             Wall w = new Wall(25, 25, 12, 240, Color.Blue);

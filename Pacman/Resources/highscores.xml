@@ -1,7 +1,7 @@
 ﻿<highscores>
   <player>
     <name>AAA</name>
-    <score>2000</score>
+    <score>2</score>
   </player>
   
   <player>
@@ -11,16 +11,16 @@
   
   <player>
     <name>CCC</name>
-    <score>9000</score>
+    <score>9</score>
   </player>
 
   <player>
     <name>DDD</name>
-    <score>1800</score>
+    <score>180</score>
   </player>
 
   <player>
     <name>EEE</name>
-    <score>2000</score>
+    <score>20</score>
   </player>
 </highscores>

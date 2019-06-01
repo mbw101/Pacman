@@ -53,14 +53,31 @@ namespace Pacman
                 }
             }
 
-            highscores = highscores.OrderByDescending(x => x.score).ThenBy(x => x.name).ToList();
+            
 
             reader.Close();
         }
 
-        public void saveHighscores()
+        public static void saveHighscores()
         {
-            // TODO: Save highscores
+            // open xml file
+            XmlWriter writer = XmlWriter.Create("Resources/highscores.xml");
+            highscores = highscores.OrderByDescending(x => x.score).ThenBy(x => x.name).ToList();
+            // only store the top 5 high scores
+
+            writer.WriteStartElement("highscores");
+
+            for (int i = 0; i < 4; i++)
+            {
+                writer.WriteStartElement("player");
+                writer.WriteElementString("name", highscores[i].name);
+                writer.WriteElementString("score", highscores[i].score.ToString());
+                writer.WriteEndElement(); // end the element
+            }
+
+            writer.WriteEndElement(); // end the root element
+
+            writer.Close(); // close the xml file
         }
 
         public void displayHighscores()

@@ -100,17 +100,25 @@ namespace Pacman
                 case Keys.Enter:
                     if (index == 3)
                     {
-                        // save initial to the list
+                        FD = letters[FDOrder];
+                        SD = letters[SDOrder];
+                        TD = letters[TDOrder];
+
+                        // save initial
                         string initial = FD + SD + TD;
-                        HighScreen.initials.Add(initial);
-                        HighScreen.scores.Add(GameScreen.score);
+
+                        // create high score object and add it to the list
+                        Highscore hs = new Highscore(initial, GameScreen.score);
+                        HighScreen.highscores.Add(hs);
 
                         // change to the highscore screen
                         Form1.ChangeScreen(this, "HighScreen");
-                    }
-                    break;
 
-                    
+                        HighScreen.saveHighscores();
+
+                        Refresh();
+                    }
+                    break;           
             }
         }
 
