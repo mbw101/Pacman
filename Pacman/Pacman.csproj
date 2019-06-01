@@ -72,11 +72,11 @@
     <Compile Include="MenuScreen.Designer.cs">
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="nameScreen.cs">
+    <Compile Include="NameScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="nameScreen.Designer.cs">
-      <DependentUpon>nameScreen.cs</DependentUpon>
+    <Compile Include="NameScreen.Designer.cs">
+      <DependentUpon>NameScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="PacMan.cs" />
     <Compile Include="Pellet.cs" />
@@ -95,8 +95,8 @@
     <EmbeddedResource Include="MenuScreen.resx">
       <DependentUpon>MenuScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="nameScreen.resx">
-      <DependentUpon>nameScreen.cs</DependentUpon>
+    <EmbeddedResource Include="NameScreen.resx">
+      <DependentUpon>NameScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
