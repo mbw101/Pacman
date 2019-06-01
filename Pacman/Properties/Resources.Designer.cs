@@ -80,6 +80,7 @@ namespace Pacman.Properties {
         ///  &lt;player&gt;
         ///    &lt;name&gt;DDD&lt;/name&gt;
         ///    &lt;score&gt;1800&lt;/score&gt;
+
         ///  &lt;/player&gt;
         ///
         ///  &lt;player&gt;
@@ -94,7 +95,7 @@ namespace Pacman.Properties {
                 return ResourceManager.GetString("highscores", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>

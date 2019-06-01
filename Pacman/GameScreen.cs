@@ -56,6 +56,7 @@ namespace Pacman
             initLevel();
         }
 
+
         public void initLevel()
         {
             tmpXSpeed = player.getXSpeed();
@@ -74,6 +75,7 @@ namespace Pacman
             }
 
             Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, 200, "ambush", Color.Red);
+
             ghosts.Clear();
             ghosts.Add(g);
 
