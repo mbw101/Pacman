@@ -20,7 +20,7 @@ namespace Pacman
         const int GHOST_SPEED = 2;
         const int startX = 600;
         const int startY = 400;
-        int score = 0;
+        public static int score = 0;
 
         // characters
         PacMan player = new PacMan(686, 214, 32, -SPEED, 0, 3);

@@ -26,12 +26,7 @@ namespace Pacman
         public NameScreen()
         {
             InitializeComponent();
-
-            if (index == 0)
-            {
-                firstLabel.BackColor = Color.DodgerBlue;
-                Refresh();
-            }
+            scoreLabel.Text += GameScreen.score + "!";
         }
 
         private void NameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -41,9 +36,6 @@ namespace Pacman
                 case Keys.W:
                     if (index == 0)
                     {
-                        firstLabel.BackColor = Color.DodgerBlue;
-                        secondLabel.BackColor = Color.White;
-
                         if (FDOrder < 25)
                         {
                             FDOrder++;
@@ -52,23 +44,24 @@ namespace Pacman
                     }
                     else if (index == 1)
                     {
-                        firstLabel.BackColor = Color.DodgerBlue;
-                        secondLabel.BackColor = Color.DodgerBlue;
-
                         if (SDOrder < 25)
                         {
                             SDOrder++;
                             secondLabel.Text = letters[SDOrder];
                         }
                     }
-                    Refresh();
+                    else if (index == 2)
+                    {
+                        if (TDOrder < 25)
+                        {
+                            TDOrder++;
+                            thirdLabel.Text = letters[TDOrder];
+                        }
+                    }
                     break;
                 case Keys.S:
                     if (index == 0)
                     {
-                        firstLabel.BackColor = Color.DodgerBlue;
-                        secondLabel.BackColor = Color.White;
-
                         if (FDOrder > 0)
                         {
                             FDOrder--;
@@ -77,13 +70,18 @@ namespace Pacman
                     }
                     else if (index == 1)
                     {
-                        firstLabel.BackColor = Color.DodgerBlue;
-                        secondLabel.BackColor = Color.DodgerBlue;
-
                         if (SDOrder > 0)
                         {
                             SDOrder--;
                             secondLabel.Text = letters[SDOrder];
+                        }
+                    }
+                    else if (index == 2)
+                    {
+                        if (TDOrder > 0)
+                        {
+                            TDOrder--;
+                            thirdLabel.Text = letters[TDOrder];
                         }
                     }
                     break;
@@ -98,6 +96,51 @@ namespace Pacman
                         index = 0;
                     else
                         index++;
+                    break;
+                case Keys.Enter:
+                    if (index == 3)
+                    {
+                        // save initial to the list
+                        string initial = FD + SD + TD;
+                        HighScreen.initials.Add(initial);
+                        HighScreen.scores.Add(GameScreen.score);
+
+                        // change to the highscore screen
+                        Form1.ChangeScreen(this, "HighScreen");
+                    }
+                    break;
+
+                    
+            }
+        }
+
+        private void gameTImer2_Tick(object sender, EventArgs e)
+        {
+            switch (index)
+            {
+                case 0:
+                    firstLabel.BackColor = Color.DodgerBlue;
+                    secondLabel.BackColor = Color.White;
+                    thirdLabel.BackColor = Color.White;
+                    saveLabel.BackColor = Color.White;
+                    break;
+                case 1:
+                    firstLabel.BackColor = Color.White;
+                    secondLabel.BackColor = Color.DodgerBlue;
+                    thirdLabel.BackColor = Color.White;
+                    saveLabel.BackColor = Color.White;
+                    break;
+                case 2:
+                    firstLabel.BackColor = Color.White;
+                    secondLabel.BackColor = Color.White;
+                    thirdLabel.BackColor = Color.DodgerBlue;
+                    saveLabel.BackColor = Color.White;
+                    break;
+                case 3:
+                    firstLabel.BackColor = Color.White;
+                    secondLabel.BackColor = Color.White;
+                    thirdLabel.BackColor = Color.White;
+                    saveLabel.BackColor = Color.DodgerBlue;
                     break;
             }
         }
