@@ -26,7 +26,13 @@ namespace Pacman
 
         private void highButton_Click(object sender, EventArgs e)
         {
-            Form1.ChangeScreen(this, "HighScreen");
+            // only load highscores if there aren't any in the list 
+            if (HighScreen.highscores == null)
+            {
+                HighScreen.loadHighscores();
+            }
+
+            Form1.ChangeScreen(this, "HighScreen");           
         }
 
         private void exitButton_Click_1(object sender, EventArgs e)

@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.firstLabel = new System.Windows.Forms.Label();
             this.secondLabel = new System.Windows.Forms.Label();
             this.thirdLabel = new System.Windows.Forms.Label();
-            this.saveButton = new System.Windows.Forms.Button();
             this.scoreLabel = new System.Windows.Forms.Label();
+            this.gameTImer2 = new System.Windows.Forms.Timer(this.components);
+            this.saveLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // firstLabel
@@ -68,17 +70,6 @@
             this.thirdLabel.TabIndex = 2;
             this.thirdLabel.Text = "A";
             // 
-            // saveButton
-            // 
-            this.saveButton.Enabled = false;
-            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(613, 511);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(147, 46);
-            this.saveButton.TabIndex = 3;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            // 
             // scoreLabel
             // 
             this.scoreLabel.AutoSize = true;
@@ -90,13 +81,30 @@
             this.scoreLabel.TabIndex = 4;
             this.scoreLabel.Text = "Your score is ";
             // 
+            // gameTImer2
+            // 
+            this.gameTImer2.Enabled = true;
+            this.gameTImer2.Interval = 16;
+            this.gameTImer2.Tick += new System.EventHandler(this.gameTImer2_Tick);
+            // 
+            // saveLabel
+            // 
+            this.saveLabel.AutoSize = true;
+            this.saveLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.saveLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveLabel.Location = new System.Drawing.Point(575, 489);
+            this.saveLabel.Name = "saveLabel";
+            this.saveLabel.Size = new System.Drawing.Size(196, 73);
+            this.saveLabel.TabIndex = 3;
+            this.saveLabel.Text = "Save ";
+            // 
             // NameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Controls.Add(this.saveLabel);
             this.Controls.Add(this.scoreLabel);
-            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.thirdLabel);
             this.Controls.Add(this.secondLabel);
             this.Controls.Add(this.firstLabel);
@@ -113,7 +121,8 @@
         private System.Windows.Forms.Label firstLabel;
         private System.Windows.Forms.Label secondLabel;
         private System.Windows.Forms.Label thirdLabel;
-        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Label scoreLabel;
+        private System.Windows.Forms.Timer gameTImer2;
+        private System.Windows.Forms.Label saveLabel;
     }
 }
