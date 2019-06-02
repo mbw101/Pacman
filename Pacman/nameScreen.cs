@@ -111,10 +111,14 @@ namespace Pacman
                         Highscore hs = new Highscore(initial, GameScreen.score);
                         HighScreen.highscores.Add(hs);
 
+                        // load all previous high scores
+                        HighScreen.loadHighscores();
+
+                        // save the highscores that are in the list
+                        HighScreen.saveHighscores();
+
                         // change to the highscore screen
                         Form1.ChangeScreen(this, "HighScreen");
-
-                        HighScreen.saveHighscores();
 
                         Refresh();
                     }

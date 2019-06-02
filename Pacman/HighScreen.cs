@@ -24,7 +24,7 @@ namespace Pacman
             displayHighscores();
         }
 
-        public void loadHighscores()
+        public static void loadHighscores()
         {
             XmlReader reader = XmlReader.Create("Resources/highscores.xml");
 
@@ -53,8 +53,6 @@ namespace Pacman
                 }
             }
 
-            
-
             reader.Close();
         }
 
@@ -67,7 +65,8 @@ namespace Pacman
 
             writer.WriteStartElement("highscores");
 
-            for (int i = 0; i < 4; i++)
+            // write all the highscores
+            for (int i = 0; i < highscores.Count(); i++)
             {
                 writer.WriteStartElement("player");
                 writer.WriteElementString("name", highscores[i].name);
@@ -82,7 +81,8 @@ namespace Pacman
 
         public void displayHighscores()
         {
-            loadHighscores();
+            // sort high scores
+            highscores = highscores.OrderByDescending(x => x.score).ThenBy(x => x.name).ToList();
 
             for (int i = 0; i < highscores.Count(); i++)
             {
