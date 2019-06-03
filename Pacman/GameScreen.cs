@@ -55,6 +55,14 @@ namespace Pacman
             initLevel();
         }
 
+        // resets the position of pac-man and ghosts
+        // for when pac-man loses a life
+        public void ResetCharacters()
+        {
+            player.setPosition(686, 214);
+            ghosts[0].setPosition(100, 250);
+        }
+
         public void initLevel()
         {
             // reset score
@@ -65,15 +73,34 @@ namespace Pacman
             tmpYSpeed = player.getYSpeed();
 
             // create pellets
-            for (int i = 1; i < 36; i++)
+            for (int i = 1; i < 7; i++)
             {
-                Pellet p = new Pellet(32 + (i * 20), 50, 10, 10, Color.Yellow);
+                Pellet p = new Pellet(12 + (i * 20), 46, 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
-
-            for (int i = 1; i < 25; i++)
+            for (int i = 1; i < 10; i++)
             {
-                Pellet p = new Pellet(52, 50 + (i * 20), 10, 10, Color.Yellow);
+                Pellet p = new Pellet(32, 46 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 1; i < 6; i++)
+            {
+                Pellet p = new Pellet(32 + (i * 20), 226, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 1; i < 9; i++)
+            {
+                Pellet p = new Pellet(132, 46 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 1; i < 16; i++)
+            {
+                Pellet p = new Pellet(132, 206 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 1; i < 16; i++)
+            {
+                Pellet p = new Pellet(132, 206 + (i * 20), 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
 
@@ -161,15 +188,22 @@ namespace Pacman
             {
                 g.move();
 
-                if (player.Collision(g))
+                if (player.Collision(g) && player.lives > 0)
                 {
                     death.Play();
 
-                    Thread.Sleep(2000);
+                    Thread.Sleep(4000);
 
                     //initLevel();
 
                     gameTimer.Enabled = false;
+
+                    player.lives--;
+
+                    // reset positions
+                    ResetCharacters();
+
+                    gameTimer.Enabled = true;
                 }
             }
 
