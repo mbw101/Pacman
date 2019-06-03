@@ -55,7 +55,6 @@ namespace Pacman
             initLevel();
         }
 
-
         public void initLevel()
         {
             // reset score
