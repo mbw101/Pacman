@@ -42,6 +42,9 @@ namespace Pacman
                 case "HighScreen":
                     ns = new HighScreen();
                     break;
+                case "NameScreen":
+                    ns = new NameScreen();
+                    break;
             }
             //centres on the screen
             ns.Location = new Point((f.Width - ns.Width) / 2, (f.Height - ns.Height) / 2);

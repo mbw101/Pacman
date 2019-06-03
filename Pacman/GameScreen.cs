@@ -20,7 +20,7 @@ namespace Pacman
         const int GHOST_SPEED = 2;
         const int startX = 600;
         const int startY = 400;
-        int score = 0;
+        public static int score = 0;
 
         // characters
         PacMan player = new PacMan(686, 214, 32, -SPEED, 0, 3);
@@ -45,7 +45,6 @@ namespace Pacman
         // player controls
         Boolean WDown, ADown, SDown, DDown;
 
-
         public GameScreen()
         {
             InitializeComponent();
@@ -58,9 +57,14 @@ namespace Pacman
 
         public void initLevel()
         {
+            // reset score
+            score = 0;
+
+            // set the temp x and y of pacman
             tmpXSpeed = player.getXSpeed();
             tmpYSpeed = player.getYSpeed();
 
+            // create pellets
             for (int i = 1; i < 36; i++)
             {
                 Pellet p = new Pellet(32 + (i * 20), 50, 10, 10, Color.Yellow);
@@ -73,12 +77,13 @@ namespace Pacman
                 pellets.Add(p);
             }
 
+            // create ghosts
             Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, 200, "ambush", Color.Red);
 
             ghosts.Clear();
             ghosts.Add(g);
 
-
+            // create walls
             /*Wall w = new Wall(25, 25, 12, 240, Color.Blue);
 
             Wall w = new Wall(25, 25, 12, 240, Color.Blue);
@@ -102,6 +107,11 @@ namespace Pacman
             walls.Add(w6);
 
             */
+        }
+
+        public void GameOver()
+        {
+
         }
 
         public void saveHighscores()
@@ -157,7 +167,7 @@ namespace Pacman
 
                     Thread.Sleep(2000);
 
-                    initLevel();
+                    //initLevel();
 
                     gameTimer.Enabled = false;
                 }
@@ -224,8 +234,10 @@ namespace Pacman
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
+            // set yello for drawing pac-man
             sb.Color = Color.Yellow;
 
+            // draw lives
             switch (player.lives)
             {
                 case 3:
@@ -295,9 +307,6 @@ namespace Pacman
             // draw score
             sb.Color = Color.White;
             e.Graphics.DrawString("Score: " + score, textFont, sb, new Point(500, Height - 40));
-
-            // Draw lives
-            //e.Graphics.DrawString("Lives: " + player.lives, textFont, sb, new Point(10, Height - 40));
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -315,6 +324,10 @@ namespace Pacman
                     break;
                 case Keys.S:
                     SDown = true;
+                    break;
+                case Keys.C:
+                    Form1.ChangeScreen(this, "NameScreen");
+                    gameTimer.Enabled = false;
                     break;
                 default:
                     break;
