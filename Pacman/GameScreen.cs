@@ -56,7 +56,6 @@ namespace Pacman
             initLevel();
         }
 
-
         public void initLevel()
         {
             tmpXSpeed = player.getXSpeed();
