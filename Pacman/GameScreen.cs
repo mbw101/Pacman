@@ -45,7 +45,6 @@ namespace Pacman
         // player controls
         Boolean WDown, ADown, SDown, DDown;
 
-
         public GameScreen()
         {
             InitializeComponent();
@@ -111,6 +110,11 @@ namespace Pacman
             */
         }
 
+        public void GameOver()
+        {
+
+        }
+
         public void saveHighscores()
         {
             XmlWriter writer = XmlWriter.Create("Resources//highscores.xml");
@@ -160,13 +164,13 @@ namespace Pacman
 
                 if (player.Collision(g))
                 {
-                    //death.Play();
+                    death.Play();
 
-                    //Thread.Sleep(2000);
+                    Thread.Sleep(2000);
 
                     //initLevel();
 
-                    //gameTimer.Enabled = false;
+                    gameTimer.Enabled = false;
                 }
             }
 
@@ -231,8 +235,10 @@ namespace Pacman
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
+            // set yello for drawing pac-man
             sb.Color = Color.Yellow;
 
+            // draw lives
             switch (player.lives)
             {
                 case 3:
@@ -302,9 +308,6 @@ namespace Pacman
             // draw score
             sb.Color = Color.White;
             e.Graphics.DrawString("Score: " + score, textFont, sb, new Point(500, Height - 40));
-
-            // Draw lives
-            //e.Graphics.DrawString("Lives: " + player.lives, textFont, sb, new Point(10, Height - 40));
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)

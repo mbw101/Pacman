@@ -21,6 +21,13 @@ namespace Pacman
         {
             InitializeComponent();
 
+            // clear the highscores list
+            highscores.Clear();
+
+            // load highscores
+            loadHighscores();
+
+            // show the highscores
             displayHighscores();
         }
 
