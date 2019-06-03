@@ -27,6 +27,14 @@ namespace Pacman
         {
             InitializeComponent();
             scoreLabel.Text += GameScreen.score + "!";
+
+            FDOrder = 0;
+            SDOrder = 0;
+            TDOrder = 0;
+
+            FD = letters[FDOrder];
+            SD = letters[SDOrder];
+            TD = letters[TDOrder];
         }
 
         private void NameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -110,9 +118,6 @@ namespace Pacman
                         // create high score object and add it to the list
                         Highscore hs = new Highscore(initial, GameScreen.score);
                         HighScreen.highscores.Add(hs);
-
-                        // load all previous high scores
-                        HighScreen.loadHighscores();
 
                         // save the highscores that are in the list
                         HighScreen.saveHighscores();
