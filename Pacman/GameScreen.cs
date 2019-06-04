@@ -27,7 +27,10 @@ namespace Pacman
         Font textFont;
 
         // sounds
+        SoundPlayer begin = new SoundPlayer(Properties.Resources.pacman_beginning);
         SoundPlayer death = new SoundPlayer(Properties.Resources.pacman_death);
+        SoundPlayer munch = new SoundPlayer(Properties.Resources.pacman_chomp);
+
         
         List<Pellet> pellets = new List<Pellet>();
         List<Pellet> removePellets = new List<Pellet>();
@@ -45,6 +48,9 @@ namespace Pacman
         // player controls
         Boolean WDown, ADown, SDown, DDown;
 
+        // munch boolean
+        bool playing = false;
+
         public GameScreen()
         {
             InitializeComponent();
@@ -53,6 +59,10 @@ namespace Pacman
             textFont = new Font("Verdana", 18, FontStyle.Regular);
 
             initLevel();
+
+            //begin.Play();
+
+            //Thread.Sleep(4000);
         }
 
         // resets the position of pac-man and ghosts
@@ -73,6 +83,7 @@ namespace Pacman
             tmpYSpeed = player.getYSpeed();
 
             // create pellets
+            // top left all going to bottom left
             for (int i = 1; i < 7; i++)
             {
                 Pellet p = new Pellet(12 + (i * 20), 46, 10, 10, Color.Yellow);
@@ -101,6 +112,11 @@ namespace Pacman
             for (int i = 1; i < 16; i++)
             {
                 Pellet p = new Pellet(132, 206 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 1; i < 6; i++)
+            {
+                Pellet p = new Pellet(10 + (i * 20), 330, 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
 
@@ -152,6 +168,17 @@ namespace Pacman
             int tempX = player.rect.X;
             int tempY = player.rect.Y;
 
+            // this is when pac-man goes through the portal on both sides
+            if (tempX < -32)
+            {
+                tempX = 780;
+            }
+            else if (tempX > 800)
+            {
+                tempX = 3;
+            }
+            player.setPosition(tempX, tempY);
+
             int tempX2 = ghosts[0].rect.X;
             int tempY2 = ghosts[0].rect.Y;
 
@@ -192,7 +219,7 @@ namespace Pacman
                 {
                     death.Play();
 
-                    Thread.Sleep(4000);
+                    //Thread.Sleep(4000);
 
                     //initLevel();
 
@@ -213,6 +240,8 @@ namespace Pacman
                 // check collision
                 if (player.Collision(p))
                 {
+                    munch.PlayLooping();
+
                     removePellets.Add(p);
 
                     score += p.score;
