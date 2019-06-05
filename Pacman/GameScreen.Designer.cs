@@ -257,7 +257,7 @@
             this.label23.BackColor = System.Drawing.Color.Blue;
             this.label23.Location = new System.Drawing.Point(520, 132);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(132, 32);
+            this.label23.Size = new System.Drawing.Size(130, 32);
             this.label23.TabIndex = 24;
             // 
             // label24
@@ -431,9 +431,9 @@
             // label45
             // 
             this.label45.BackColor = System.Drawing.Color.Blue;
-            this.label45.Location = new System.Drawing.Point(150, 132);
+            this.label45.Location = new System.Drawing.Point(152, 132);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(132, 32);
+            this.label45.Size = new System.Drawing.Size(130, 32);
             this.label45.TabIndex = 46;
             // 
             // label46
