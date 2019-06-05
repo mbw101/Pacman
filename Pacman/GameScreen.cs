@@ -119,6 +119,21 @@ namespace Pacman
                 Pellet p = new Pellet(10 + (i * 20), 330, 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
+            for (int i = 1; i < 5; i++)
+            {
+                Pellet p = new Pellet(30, 330 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 1; i < 7; i++)
+            {
+                Pellet p = new Pellet(55, 385 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 1; i < 36; i++)
+            {
+                Pellet p = new Pellet(55 + (i * 20), 505, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
 
             // create ghosts
             Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, 200, "ambush", Color.Red);
