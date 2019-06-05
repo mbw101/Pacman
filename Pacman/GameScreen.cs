@@ -84,20 +84,47 @@ namespace Pacman
             ghosts.Add(g);
 
             // create walls
-            /*Wall w = new Wall(25, 25, 12, 240, Color.Blue);
 
-            Wall w = new Wall(25, 25, 12, 240, Color.Blue);
-            Wall w2 = new Wall(25, 25, 740, 12, Color.Blue);
-            Wall w3 = new Wall(765, 25, 12, 240, Color.Blue);
-            Wall w4 = new Wall(25, 305, 12, 240, Color.Blue);
-            Wall w5 = new Wall(765, 305, 12, 240, Color.Blue);
-            Wall w6 = new Wall(25, 545, 752, 12, Color.Blue);
+            //outer shell
+            Wall w = new Wall(0, 14, 800, 16, Color.Blue);
+            Wall w2 = new Wall(0, 530, 800, 16, Color.Blue);
+            Wall w3 = new Wall(0, 30, 16, 214, Color.Blue);
+            Wall w4 = new Wall(784, 30, 16, 214, Color.Blue);
+            Wall w5 = new Wall(0, 244, 112, 16, Color.Blue);
+            Wall w6 = new Wall(688, 244, 112, 16, Color.Blue);
+            Wall w7 = new Wall(0, 300, 112, 16, Color.Blue);
+            Wall w8 = new Wall(688, 300, 112, 16, Color.Blue);
+            Wall w9 = new Wall(0, 316, 16, 214, Color.Blue);
+            Wall w10 = new Wall(784, 316, 16, 214, Color.Blue);
 
-            //Wall w7 = new Wall(15, 305, 12, 15, Color.Yellow);
-            // TODO: Figure out a way to have pac-man teleport when he exits 
-            
-            Wall w7 = new Wall(15, 305, 12, 15, Color.Yellow);
-            // TODO: Figure out a way to have pac-man teleport when he exits 
+            //lower half
+            Wall w11 = new Wall(16, 426, 28, 104, Color.Blue);
+            Wall w12 = new Wall(756, 426, 28, 104, Color.Blue);
+            Wall w13 = new Wall(56, 354, 28, 32, Color.Blue);
+            Wall w14 = new Wall(718, 354, 28, 32, Color.Blue);
+            Wall w15 = new Wall(80, 354, 32, 136, Color.Blue);
+            Wall w16 = new Wall(688, 354, 32, 136, Color.Blue);
+            Wall w17 = new Wall(152, 300, 32, 86, Color.Blue);
+            Wall w18 = new Wall(618, 300, 32, 86, Color.Blue);
+            Wall w19 = new Wall(152, 426, 32, 64, Color.Blue);
+            Wall w20 = new Wall(618, 426, 32, 64, Color.Blue);
+            Wall w21 = new Wall(184, 465, 98, 25, Color.Blue);
+            Wall w22 = new Wall(520, 465, 98, 25, Color.Blue);
+            Wall w23 = new Wall(222, 300, 60, 124, Color.Blue);
+            Wall w24 = new Wall(520, 300, 60, 124, Color.Blue);
+            Wall w25 = new Wall(320, 372, 60, 52, Color.Blue);
+            Wall w26 = new Wall(420, 372, 60, 52, Color.Blue);
+            Wall w27 = new Wall(320, 465, 160, 25, Color.Blue);
+
+            //ghost box
+            Wall w28 = new Wall(320, 232, 16, 100, Color.Blue);
+            Wall w29 = new Wall(464, 232, 16, 100, Color.Blue);
+            Wall w30 = new Wall(336, 316, 128, 16, Color.Blue);
+            Wall w31 = new Wall(336, 232, 40, 16, Color.Blue);
+            Wall w32 = new Wall(424, 232, 40, 16, Color.Blue);
+            Wall w33 = new Wall(376, 236, 48, 10, Color.White);
+
+            //upper half
 
             walls.Add(w);
             walls.Add(w2);
@@ -105,8 +132,33 @@ namespace Pacman
             walls.Add(w4);
             walls.Add(w5);
             walls.Add(w6);
-
-            */
+            walls.Add(w7);
+            walls.Add(w8);
+            walls.Add(w9);
+            walls.Add(w10);
+            walls.Add(w11);
+            walls.Add(w12);
+            walls.Add(w13);
+            walls.Add(w14);
+            walls.Add(w15);
+            walls.Add(w16);
+            walls.Add(w17);
+            walls.Add(w18);
+            walls.Add(w19);
+            walls.Add(w20);
+            walls.Add(w21);
+            walls.Add(w22);
+            walls.Add(w23);
+            walls.Add(w24);
+            walls.Add(w25);
+            walls.Add(w26);
+            walls.Add(w27);
+            walls.Add(w28);
+            walls.Add(w29);
+            walls.Add(w30);
+            walls.Add(w31);
+            walls.Add(w32);
+            walls.Add(w33);
         }
 
         public void GameOver()
