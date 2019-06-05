@@ -27,10 +27,7 @@ namespace Pacman
         Font textFont;
 
         // sounds
-        SoundPlayer begin = new SoundPlayer(Properties.Resources.pacman_beginning);
         SoundPlayer death = new SoundPlayer(Properties.Resources.pacman_death);
-        SoundPlayer munch = new SoundPlayer(Properties.Resources.pacman_chomp);
-
         
         List<Pellet> pellets = new List<Pellet>();
         List<Pellet> removePellets = new List<Pellet>();
@@ -48,9 +45,6 @@ namespace Pacman
         // player controls
         Boolean WDown, ADown, SDown, DDown;
 
-        // munch boolean
-        bool playing = false;
-
         public GameScreen()
         {
             InitializeComponent();
@@ -59,18 +53,6 @@ namespace Pacman
             textFont = new Font("Verdana", 18, FontStyle.Regular);
 
             initLevel();
-
-            //begin.Play();
-
-            //Thread.Sleep(4000);
-        }
-
-        // resets the position of pac-man and ghosts
-        // for when pac-man loses a life
-        public void ResetCharacters()
-        {
-            player.setPosition(686, 214);
-            ghosts[0].setPosition(100, 250);
         }
 
         public void initLevel()
@@ -83,40 +65,15 @@ namespace Pacman
             tmpYSpeed = player.getYSpeed();
 
             // create pellets
-            // top left all going to bottom left
-            for (int i = 1; i < 7; i++)
+            for (int i = 1; i < 36; i++)
             {
-                Pellet p = new Pellet(12 + (i * 20), 46, 10, 10, Color.Yellow);
+                Pellet p = new Pellet(32 + (i * 20), 50, 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
-            for (int i = 1; i < 10; i++)
+
+            for (int i = 1; i < 25; i++)
             {
-                Pellet p = new Pellet(32, 46 + (i * 20), 10, 10, Color.Yellow);
-                pellets.Add(p);
-            }
-            for (int i = 1; i < 6; i++)
-            {
-                Pellet p = new Pellet(32 + (i * 20), 226, 10, 10, Color.Yellow);
-                pellets.Add(p);
-            }
-            for (int i = 1; i < 9; i++)
-            {
-                Pellet p = new Pellet(132, 46 + (i * 20), 10, 10, Color.Yellow);
-                pellets.Add(p);
-            }
-            for (int i = 1; i < 16; i++)
-            {
-                Pellet p = new Pellet(132, 206 + (i * 20), 10, 10, Color.Yellow);
-                pellets.Add(p);
-            }
-            for (int i = 1; i < 16; i++)
-            {
-                Pellet p = new Pellet(132, 206 + (i * 20), 10, 10, Color.Yellow);
-                pellets.Add(p);
-            }
-            for (int i = 1; i < 6; i++)
-            {
-                Pellet p = new Pellet(10 + (i * 20), 330, 10, 10, Color.Yellow);
+                Pellet p = new Pellet(52, 50 + (i * 20), 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
 
@@ -168,6 +125,19 @@ namespace Pacman
             Wall w33 = new Wall(376, 236, 48, 10, Color.White);
 
             //upper half
+            Wall w34 = new Wall(56, 68, 56, 138, Color.White);
+            Wall w35 = new Wall(688, 68, 56, 138, Color.White);
+            Wall w36 = new Wall(152, 30, 32, 62, Color.White);
+            Wall w37 = new Wall(618, 30, 32, 62, Color.White);
+            Wall w38 = new Wall(152, 204, 32, 56, Color.White);
+            Wall w39 = new Wall(618, 204, 32, 56, Color.White);
+            Wall w40 = new Wall(150, 132, 132, 32, Color.White);
+            Wall w41 = new Wall(520, 132, 132, 32, Color.White);
+            Wall w42 = new Wall(222, 164, 60, 96, Color.White);
+            Wall w43 = new Wall(520, 164, 60, 96, Color.White);
+            Wall w44 = new Wall(222, 70, 158, 22, Color.White);
+            Wall w45 = new Wall(420, 70, 158, 22, Color.White);
+            Wall w46 = new Wall(320, 132, 160, 60, Color.White);
 
             walls.Add(w);
             walls.Add(w2);
@@ -179,6 +149,7 @@ namespace Pacman
             walls.Add(w8);
             walls.Add(w9);
             walls.Add(w10);
+
             walls.Add(w11);
             walls.Add(w12);
             walls.Add(w13);
@@ -196,12 +167,28 @@ namespace Pacman
             walls.Add(w25);
             walls.Add(w26);
             walls.Add(w27);
+
             walls.Add(w28);
             walls.Add(w29);
             walls.Add(w30);
             walls.Add(w31);
             walls.Add(w32);
             walls.Add(w33);
+
+            walls.Add(w34);
+            walls.Add(w35);
+            walls.Add(w36);
+            walls.Add(w37);
+            walls.Add(w38);
+            walls.Add(w39);
+            walls.Add(w40);
+            walls.Add(w41);
+            walls.Add(w42);
+            walls.Add(w43);
+            walls.Add(w44);
+            walls.Add(w45);
+            walls.Add(w46);
+
         }
 
         public void GameOver()
@@ -219,17 +206,6 @@ namespace Pacman
             // create a temporary location of pac-man
             int tempX = player.rect.X;
             int tempY = player.rect.Y;
-
-            // this is when pac-man goes through the portal on both sides
-            if (tempX < -32)
-            {
-                tempX = 780;
-            }
-            else if (tempX > 800)
-            {
-                tempX = 3;
-            }
-            player.setPosition(tempX, tempY);
 
             int tempX2 = ghosts[0].rect.X;
             int tempY2 = ghosts[0].rect.Y;
@@ -267,22 +243,20 @@ namespace Pacman
             {
                 g.move();
 
-                if (player.Collision(g) && player.lives > 0)
+                if (player.Collision(g))
                 {
                     death.Play();
 
-                    //Thread.Sleep(4000);
-
-                    //initLevel();
-
-                    gameTimer.Enabled = false;
+                    Thread.Sleep(2000);
 
                     player.lives--;
 
-                    // reset positions
-                    ResetCharacters();
+                    gameTimer.Enabled = false;
 
-                    gameTimer.Enabled = true;
+                    if(player.lives == 0)
+                    {
+                        Form1.ChangeScreen(this, "NameScreen");
+                    }
                 }
             }
 
@@ -292,8 +266,6 @@ namespace Pacman
                 // check collision
                 if (player.Collision(p))
                 {
-                    munch.PlayLooping();
-
                     removePellets.Add(p);
 
                     score += p.score;
