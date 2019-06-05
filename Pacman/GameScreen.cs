@@ -146,8 +146,8 @@ namespace Pacman
             Wall w37 = new Wall(618, 30, 32, 62, Color.White);
             Wall w38 = new Wall(152, 204, 32, 56, Color.White);
             Wall w39 = new Wall(618, 204, 32, 56, Color.White);
-            Wall w40 = new Wall(150, 132, 132, 32, Color.White);
-            Wall w41 = new Wall(520, 132, 132, 32, Color.White);
+            Wall w40 = new Wall(152, 132, 130, 32, Color.White);
+            Wall w41 = new Wall(520, 132, 130, 32, Color.White);
             Wall w42 = new Wall(222, 164, 60, 96, Color.White);
             Wall w43 = new Wall(520, 164, 60, 96, Color.White);
             Wall w44 = new Wall(222, 70, 158, 22, Color.White);
