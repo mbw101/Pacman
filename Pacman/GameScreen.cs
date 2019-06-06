@@ -18,12 +18,15 @@ namespace Pacman
         // movement speed
         const int SPEED = 3;
         const int GHOST_SPEED = 2;
-        const int startX = 600;
-        const int startY = 400;
+        const int startX = 384;
+        const int startY = 336;
         public static int score = 0;
 
+        const int ghostX = 380;
+        const int ghostY = 196;
+
         // characters
-        PacMan player = new PacMan(686, 214, 32, -SPEED, 0, 3);
+        PacMan player = new PacMan(startX, startY, 32, -SPEED, 0, 3);
         Font textFont;
 
         // sounds
@@ -93,8 +96,8 @@ namespace Pacman
             }
 
             // create ghosts
-            Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, 200, "ambush", Color.Red);
-
+            Ghost g = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "ambush", Color.Red);
+        
             ghosts.Clear();
             ghosts.Add(g);
 
@@ -266,7 +269,9 @@ namespace Pacman
 
                     player.lives--;
 
-                    gameTimer.Enabled = false;
+                    player.setPosition(startX, startY);
+
+                    g.setPosition(ghostX, ghostY);
 
                     if(player.lives == 0)
                     {
