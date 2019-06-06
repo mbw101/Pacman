@@ -110,9 +110,164 @@ namespace Pacman
                 Pellet p = new Pellet(55, 385 + (i * 20), 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
-            for (int i = 1; i < 36; i++)
+            for (int i = 1; i < 35; i++)
             {
                 Pellet p = new Pellet(55 + (i * 20), 505, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 18; i++)
+            {
+                Pellet p = new Pellet(295, 480 - (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 28; i++)
+            {
+                Pellet p = new Pellet(150 + (i * 20), 105, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Pellet p = new Pellet(199, 85 - (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 20; i++)
+            {
+                Pellet p = new Pellet(215 + (i * 20), 45, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                Pellet p = new Pellet(592, 68 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                Pellet p = new Pellet(396, 68 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Pellet p = new Pellet(155 + (i * 20), 178, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 18; i++)
+            {
+                Pellet p = new Pellet(497, 132 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 13; i++)
+            {
+                Pellet p = new Pellet(200, 202 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                Pellet p = new Pellet(152 + (i * 20), 274, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                Pellet p = new Pellet(152 + (i * 20), 400, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Pellet p = new Pellet(222 + (i * 20), 278, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Pellet p = new Pellet(222 + (i * 20), 441, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                Pellet p = new Pellet(320 + (i * 20), 212, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                Pellet p = new Pellet(320 + (i * 20), 345, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                Pellet p = new Pellet(320 + (i * 20), 439, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 9; i++)
+            {
+                Pellet p = new Pellet(520 + (i * 20), 272, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Pellet p = new Pellet(398, 373 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                Pellet p = new Pellet(592, 179 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                Pellet p = new Pellet(595, 298 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Pellet p = new Pellet(520 + (i * 20), 441, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                Pellet p = new Pellet(694 + (i * 20), 43, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                Pellet p = new Pellet(762, 68 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                Pellet p = new Pellet(663, 298 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                Pellet p = new Pellet(663, 132 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Pellet p = new Pellet(665, 46 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                Pellet p = new Pellet(618 + (i * 20), 399, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                Pellet p = new Pellet(621 + (i * 20), 178, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                Pellet p = new Pellet(697 + (i * 20), 330, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                Pellet p = new Pellet(762, 354 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                Pellet p = new Pellet(735, 410 + (i * 20), 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
 
@@ -245,6 +400,17 @@ namespace Pacman
             // create a temporary location of pac-man
             int tempX = player.rect.X;
             int tempY = player.rect.Y;
+
+            if (tempX < -32)
+            {
+                tempX = 780;
+            }
+            else if (tempX > 800)
+            {
+                tempX = 3;
+            }
+
+            player.setPosition(tempX, tempY);
 
             int tempX2 = ghosts[0].rect.X;
             int tempY2 = ghosts[0].rect.Y;
