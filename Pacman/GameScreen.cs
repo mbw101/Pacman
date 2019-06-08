@@ -18,12 +18,15 @@ namespace Pacman
         // movement speed
         const int SPEED = 3;
         const int GHOST_SPEED = 2;
-        const int startX = 600;
-        const int startY = 400;
+        const int startX = 384;
+        const int startY = 336;
         public static int score = 0;
 
+        const int ghostX = 380;
+        const int ghostY = 196;
+
         // characters
-        PacMan player = new PacMan(686, 214, 32, -SPEED, 0, 3);
+        PacMan player = new PacMan(startX, startY, 32, -SPEED, 0, 3);
         Font textFont;
 
         // sounds
@@ -272,8 +275,8 @@ namespace Pacman
             }
 
             // create ghosts
-            Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, 200, "ambush", Color.Red);
-
+            Ghost g = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "ambush", Color.Red);
+        
             ghosts.Clear();
             ghosts.Add(g);
 
@@ -325,8 +328,8 @@ namespace Pacman
             Wall w37 = new Wall(618, 30, 32, 62, Color.White);
             Wall w38 = new Wall(152, 204, 32, 56, Color.White);
             Wall w39 = new Wall(618, 204, 32, 56, Color.White);
-            Wall w40 = new Wall(150, 132, 132, 32, Color.White);
-            Wall w41 = new Wall(520, 132, 132, 32, Color.White);
+            Wall w40 = new Wall(152, 132, 130, 32, Color.White);
+            Wall w41 = new Wall(520, 132, 130, 32, Color.White);
             Wall w42 = new Wall(222, 164, 60, 96, Color.White);
             Wall w43 = new Wall(520, 164, 60, 96, Color.White);
             Wall w44 = new Wall(222, 70, 158, 22, Color.White);
@@ -456,7 +459,9 @@ namespace Pacman
 
                     player.lives--;
 
-                    gameTimer.Enabled = false;
+                    player.setPosition(startX, startY);
+
+                    g.setPosition(ghostX, ghostY);
 
                     if(player.lives == 0)
                     {
