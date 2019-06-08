@@ -16,10 +16,10 @@ namespace Pacman
     public partial class GameScreen : UserControl
     {
         // movement speed
-        const int SPEED = 3;
-        const int GHOST_SPEED = 2;
-        const int startX = 384;
-        const int startY = 336;
+        public const int SPEED = 3;
+        public const int GHOST_SPEED = 2;
+        public const int startX = 384;
+        public const int startY = 336;
         public static int score = 0;
 
         const int ghostX = 380;
@@ -275,7 +275,7 @@ namespace Pacman
             }
 
             // create ghosts
-            Ghost g = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "ambush", Color.Red);
+            Ghost g = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "aggressive", Color.Red);
         
             ghosts.Clear();
             ghosts.Add(g);
@@ -466,6 +466,14 @@ namespace Pacman
                     if(player.lives == 0)
                     {
                         Form1.ChangeScreen(this, "NameScreen");
+                    }
+                }
+
+                foreach (Wall wall in walls)
+                {
+                    if (g.collision(wall))
+                    {
+                        g.changeDirection(player);
                     }
                 }
             }
