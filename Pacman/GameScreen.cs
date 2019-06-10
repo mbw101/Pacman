@@ -33,7 +33,9 @@ namespace Pacman
         SoundPlayer death = new SoundPlayer(Properties.Resources.pacman_death);
         
         List<Pellet> pellets = new List<Pellet>();
+        List<PowerPellet> powerPellets = new List<PowerPellet>();
         List<Pellet> removePellets = new List<Pellet>();
+        List<PowerPellet> removePowerPellets = new List<PowerPellet>();
         List<Wall> walls = new List<Wall>();
         List<Ghost> ghosts = new List<Ghost>();
          
@@ -68,11 +70,15 @@ namespace Pacman
             tmpYSpeed = player.getYSpeed();
 
             // create pellets
-            for (int i = 1; i < 7; i++)
+            for (int i = 1; i < 6; i++)
             {
                 Pellet p = new Pellet(12 + (i * 20), 46, 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
+
+            PowerPellet pp = new PowerPellet(128, 40, 20, 50, Color.Wheat);
+            powerPellets.Add(pp);
+
             for (int i = 1; i < 10; i++)
             {
                 Pellet p = new Pellet(32, 46 + (i * 20), 10, 10, Color.Yellow);
@@ -385,7 +391,6 @@ namespace Pacman
             walls.Add(w44);
             walls.Add(w45);
             walls.Add(w46);
-
         }
 
         public void GameOver()
@@ -451,7 +456,7 @@ namespace Pacman
             {
                 g.move();
 
-                if (player.Collision(g))
+                if (player.Collision(g) && !g.edible)
                 {
                     death.Play();
 
@@ -462,18 +467,34 @@ namespace Pacman
                     player.setPosition(startX, startY);
 
                     g.setPosition(ghostX, ghostY);
+                    g.setSpeed(GHOST_SPEED, 0);
 
                     if(player.lives == 0)
                     {
                         Form1.ChangeScreen(this, "NameScreen");
                     }
                 }
+                else if (player.Collision(g) && g.edible)
+                {
+                    // TODO: Almost done eating ghosts
+                    score += g.score;
+                    Thread.Sleep(500);
+
+                    g.setPosition(ghostX, ghostY);
+                    g.setSpeed(GHOST_SPEED, 0);
+
+                    g.edible = false;
+                }
 
                 foreach (Wall wall in walls)
                 {
                     if (g.collision(wall))
                     {
-                        g.changeDirection(player);
+                        /* TODO: Add a counter and once 
+                        it gets over a certain amount,
+                        automatically change direction */
+
+                        g.changeDirection(player, tempX2, tempY2);
                     }
                 }
             }
@@ -489,11 +510,28 @@ namespace Pacman
                     score += p.score;
                 }
             }
+            // TODO: Work on power pellets and being able to eat ghosts
+            foreach (PowerPellet pp in powerPellets)
+            {
+                // check collision
+                if (player.Collision(pp))
+                {
+                    removePowerPellets.Add(pp);
+
+                    score += pp.score;
+                }
+            }
 
             // remove all pellets that have to be removed
             foreach (Pellet p in removePellets)
             {
                 pellets.Remove(p);
+            }
+
+            // remove power pellets
+            foreach (PowerPellet pp in removePowerPellets)
+            {
+                powerPellets.Remove(pp);
             }
 
             // check for collision with each wall
@@ -591,6 +629,14 @@ namespace Pacman
                 sb.Color = p.colour;
 
                 e.Graphics.FillRectangle(sb, p.rect);
+            }
+
+            // draw power pellets
+            foreach (PowerPellet pp in powerPellets)
+            {
+                sb.Color = pp.colour;
+
+                e.Graphics.FillEllipse(sb, pp.rect);
             }
 
             // Draw walls
