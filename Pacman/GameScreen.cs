@@ -18,6 +18,7 @@ namespace Pacman
         // movement speed
         public const int SPEED = 3;
         public const int GHOST_SPEED = 2;
+        public const int GHOST_EAT_SPEED = 1;
         public const int startX = 384;
         public const int startY = 336;
         public static int score = 0;
@@ -92,11 +93,6 @@ namespace Pacman
             for (int i = 1; i < 9; i++)
             {
                 Pellet p = new Pellet(132, 46 + (i * 20), 10, 10, Color.Yellow);
-                pellets.Add(p);
-            }
-            for (int i = 1; i < 16; i++)
-            {
-                Pellet p = new Pellet(132, 206 + (i * 20), 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
             for (int i = 1; i < 16; i++)
@@ -471,7 +467,11 @@ namespace Pacman
 
                     if(player.lives == 0)
                     {
+                        
+
+                        // TODO: Fix xml file
                         Form1.ChangeScreen(this, "NameScreen");
+                        gameTimer.Enabled = false;
                     }
                 }
                 else if (player.Collision(g) && g.edible)
@@ -677,6 +677,12 @@ namespace Pacman
                     SDown = true;
                     break;
                 case Keys.C:
+                    // only load highscores if there aren't any in the list 
+                    if (HighScreen.highscores == null)
+                    {
+                        HighScreen.loadHighscores();
+                    }
+
                     Form1.ChangeScreen(this, "NameScreen");
                     gameTimer.Enabled = false;
                     break;
