@@ -467,8 +467,6 @@ namespace Pacman
 
                     if(player.lives == 0)
                     {
-                        
-
                         // TODO: Fix xml file
                         Form1.ChangeScreen(this, "NameScreen");
                         gameTimer.Enabled = false;
@@ -476,9 +474,10 @@ namespace Pacman
                 }
                 else if (player.Collision(g) && g.edible)
                 {
-                    // TODO: Almost done eating ghosts
+                    // when the ghost is eaten,
+                    // add the ghosts score and reset everything about that ghost
                     score += g.score;
-                    Thread.Sleep(500);
+                    Thread.Sleep(250);
 
                     g.setPosition(ghostX, ghostY);
                     g.setSpeed(GHOST_SPEED, 0);
@@ -510,7 +509,8 @@ namespace Pacman
                     score += p.score;
                 }
             }
-            // TODO: Work on power pellets and being able to eat ghosts
+            // If any power pellets are collided
+            // then remove it, add score, and make ghosts edible
             foreach (PowerPellet pp in powerPellets)
             {
                 // check collision
@@ -519,6 +519,11 @@ namespace Pacman
                     removePowerPellets.Add(pp);
 
                     score += pp.score;
+
+                    foreach (Ghost g in ghosts)
+                    {
+                        g.edible = true;
+                    }
                 }
             }
 
