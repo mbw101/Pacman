@@ -575,6 +575,7 @@ namespace Pacman
             Refresh();
         }
 
+        #region Draw Methods weehaw
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             // set yello for drawing pac-man
@@ -651,6 +652,11 @@ namespace Pacman
             foreach (Ghost g in ghosts)
             {
                 sb.Color = g.colour;
+                
+                if (g.edible == true)
+                {
+                    sb.Color = Color.Blue;
+                }
 
                 e.Graphics.FillRectangle(sb, g.rect);
             }
@@ -659,7 +665,7 @@ namespace Pacman
             sb.Color = Color.White;
             e.Graphics.DrawString("Score: " + score, textFont, sb, new Point(500, Height - 40));
         }
-
+        #endregion
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
