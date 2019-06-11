@@ -20,6 +20,9 @@ namespace Pacman
         private void Form1_Load(object sender, EventArgs e)
         {
             MenuScreen ms = new MenuScreen();
+
+            ms.Location = new Point((this.Width - ms.Width) / 2, (this.Height - ms.Height) / 2);
+
             this.Controls.Add(ms);
         }
 

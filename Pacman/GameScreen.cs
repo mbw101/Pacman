@@ -16,21 +16,27 @@ namespace Pacman
     public partial class GameScreen : UserControl
     {
         // movement speed
-        const int SPEED = 3;
-        const int GHOST_SPEED = 2;
-        const int startX = 600;
-        const int startY = 400;
+        public const int SPEED = 3;
+        public const int GHOST_SPEED = 2;
+        public const int GHOST_EAT_SPEED = 1;
+        public const int startX = 384;
+        public const int startY = 336;
         public static int score = 0;
 
+        const int ghostX = 380;
+        const int ghostY = 196;
+
         // characters
-        PacMan player = new PacMan(686, 214, 32, -SPEED, 0, 3);
+        PacMan player = new PacMan(startX, startY, 32, -SPEED, 0, 3);
         Font textFont;
 
         // sounds
         SoundPlayer death = new SoundPlayer(Properties.Resources.pacman_death);
         
         List<Pellet> pellets = new List<Pellet>();
+        List<PowerPellet> powerPellets = new List<PowerPellet>();
         List<Pellet> removePellets = new List<Pellet>();
+        List<PowerPellet> removePowerPellets = new List<PowerPellet>();
         List<Wall> walls = new List<Wall>();
         List<Ghost> ghosts = new List<Ghost>();
          
@@ -65,11 +71,15 @@ namespace Pacman
             tmpYSpeed = player.getYSpeed();
 
             // create pellets
-            for (int i = 1; i < 7; i++)
+            for (int i = 1; i < 6; i++)
             {
                 Pellet p = new Pellet(12 + (i * 20), 46, 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
+
+            PowerPellet pp = new PowerPellet(128, 40, 20, 50, Color.Wheat);
+            powerPellets.Add(pp);
+
             for (int i = 1; i < 10; i++)
             {
                 Pellet p = new Pellet(32, 46 + (i * 20), 10, 10, Color.Yellow);
@@ -83,11 +93,6 @@ namespace Pacman
             for (int i = 1; i < 9; i++)
             {
                 Pellet p = new Pellet(132, 46 + (i * 20), 10, 10, Color.Yellow);
-                pellets.Add(p);
-            }
-            for (int i = 1; i < 16; i++)
-            {
-                Pellet p = new Pellet(132, 206 + (i * 20), 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
             for (int i = 1; i < 16; i++)
@@ -110,15 +115,170 @@ namespace Pacman
                 Pellet p = new Pellet(55, 385 + (i * 20), 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
-            for (int i = 1; i < 36; i++)
+            for (int i = 1; i < 35; i++)
             {
                 Pellet p = new Pellet(55 + (i * 20), 505, 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
+            for (int i = 0; i < 18; i++)
+            {
+                Pellet p = new Pellet(295, 480 - (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 28; i++)
+            {
+                Pellet p = new Pellet(150 + (i * 20), 105, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Pellet p = new Pellet(199, 85 - (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 20; i++)
+            {
+                Pellet p = new Pellet(215 + (i * 20), 45, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                Pellet p = new Pellet(592, 68 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                Pellet p = new Pellet(396, 68 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Pellet p = new Pellet(155 + (i * 20), 178, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 18; i++)
+            {
+                Pellet p = new Pellet(497, 132 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 13; i++)
+            {
+                Pellet p = new Pellet(200, 202 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                Pellet p = new Pellet(152 + (i * 20), 274, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                Pellet p = new Pellet(152 + (i * 20), 400, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Pellet p = new Pellet(222 + (i * 20), 278, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Pellet p = new Pellet(222 + (i * 20), 441, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                Pellet p = new Pellet(320 + (i * 20), 212, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                Pellet p = new Pellet(320 + (i * 20), 345, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                Pellet p = new Pellet(320 + (i * 20), 439, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 9; i++)
+            {
+                Pellet p = new Pellet(520 + (i * 20), 272, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Pellet p = new Pellet(398, 373 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                Pellet p = new Pellet(592, 179 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                Pellet p = new Pellet(595, 298 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Pellet p = new Pellet(520 + (i * 20), 441, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                Pellet p = new Pellet(694 + (i * 20), 43, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                Pellet p = new Pellet(762, 68 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                Pellet p = new Pellet(663, 298 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                Pellet p = new Pellet(663, 132 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                Pellet p = new Pellet(665, 46 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                Pellet p = new Pellet(618 + (i * 20), 399, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                Pellet p = new Pellet(621 + (i * 20), 178, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                Pellet p = new Pellet(697 + (i * 20), 330, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                Pellet p = new Pellet(762, 354 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                Pellet p = new Pellet(735, 410 + (i * 20), 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
 
             // create ghosts
-            Ghost g = new Ghost(100, 250, 32, GHOST_SPEED, 0, 200, "ambush", Color.Red);
-
+            Ghost g = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "aggressive", Color.Red);
+        
             ghosts.Clear();
             ghosts.Add(g);
 
@@ -170,8 +330,8 @@ namespace Pacman
             Wall w37 = new Wall(618, 30, 32, 62, Color.White);
             Wall w38 = new Wall(152, 204, 32, 56, Color.White);
             Wall w39 = new Wall(618, 204, 32, 56, Color.White);
-            Wall w40 = new Wall(150, 132, 132, 32, Color.White);
-            Wall w41 = new Wall(520, 132, 132, 32, Color.White);
+            Wall w40 = new Wall(152, 132, 130, 32, Color.White);
+            Wall w41 = new Wall(520, 132, 130, 32, Color.White);
             Wall w42 = new Wall(222, 164, 60, 96, Color.White);
             Wall w43 = new Wall(520, 164, 60, 96, Color.White);
             Wall w44 = new Wall(222, 70, 158, 22, Color.White);
@@ -227,7 +387,6 @@ namespace Pacman
             walls.Add(w44);
             walls.Add(w45);
             walls.Add(w46);
-
         }
 
         public void GameOver()
@@ -245,6 +404,17 @@ namespace Pacman
             // create a temporary location of pac-man
             int tempX = player.rect.X;
             int tempY = player.rect.Y;
+
+            if (tempX < -32)
+            {
+                tempX = 780;
+            }
+            else if (tempX > 800)
+            {
+                tempX = 3;
+            }
+
+            player.setPosition(tempX, tempY);
 
             int tempX2 = ghosts[0].rect.X;
             int tempY2 = ghosts[0].rect.Y;
@@ -282,7 +452,7 @@ namespace Pacman
             {
                 g.move();
 
-                if (player.Collision(g))
+                if (player.Collision(g) && !g.edible)
                 {
                     death.Play();
 
@@ -290,11 +460,41 @@ namespace Pacman
 
                     player.lives--;
 
-                    gameTimer.Enabled = false;
+                    player.setPosition(startX, startY);
+
+                    g.setPosition(ghostX, ghostY);
+                    g.setSpeed(GHOST_SPEED, 0);
 
                     if(player.lives == 0)
                     {
+                        
+
+                        // TODO: Fix xml file
                         Form1.ChangeScreen(this, "NameScreen");
+                        gameTimer.Enabled = false;
+                    }
+                }
+                else if (player.Collision(g) && g.edible)
+                {
+                    // TODO: Almost done eating ghosts
+                    score += g.score;
+                    Thread.Sleep(500);
+
+                    g.setPosition(ghostX, ghostY);
+                    g.setSpeed(GHOST_SPEED, 0);
+
+                    g.edible = false;
+                }
+
+                foreach (Wall wall in walls)
+                {
+                    if (g.collision(wall))
+                    {
+                        /* TODO: Add a counter and once 
+                        it gets over a certain amount,
+                        automatically change direction */
+
+                        g.changeDirection(player, tempX2, tempY2);
                     }
                 }
             }
@@ -310,11 +510,28 @@ namespace Pacman
                     score += p.score;
                 }
             }
+            // TODO: Work on power pellets and being able to eat ghosts
+            foreach (PowerPellet pp in powerPellets)
+            {
+                // check collision
+                if (player.Collision(pp))
+                {
+                    removePowerPellets.Add(pp);
+
+                    score += pp.score;
+                }
+            }
 
             // remove all pellets that have to be removed
             foreach (Pellet p in removePellets)
             {
                 pellets.Remove(p);
+            }
+
+            // remove power pellets
+            foreach (PowerPellet pp in removePowerPellets)
+            {
+                powerPellets.Remove(pp);
             }
 
             // check for collision with each wall
@@ -414,6 +631,14 @@ namespace Pacman
                 e.Graphics.FillRectangle(sb, p.rect);
             }
 
+            // draw power pellets
+            foreach (PowerPellet pp in powerPellets)
+            {
+                sb.Color = pp.colour;
+
+                e.Graphics.FillEllipse(sb, pp.rect);
+            }
+
             // Draw walls
             foreach (Wall w in walls)
             {
@@ -452,6 +677,12 @@ namespace Pacman
                     SDown = true;
                     break;
                 case Keys.C:
+                    // only load highscores if there aren't any in the list 
+                    if (HighScreen.highscores == null)
+                    {
+                        HighScreen.loadHighscores();
+                    }
+
                     Form1.ChangeScreen(this, "NameScreen");
                     gameTimer.Enabled = false;
                     break;
