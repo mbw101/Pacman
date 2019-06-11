@@ -7,18 +7,9 @@ using System.Drawing;
 
 namespace Pacman
 {
-    public class Pellet
+    public class PowerPellet : Pellet
     {
-        public Rectangle rect;
-        public int score;
-        public Color colour;
-
-        public Pellet()
-        {
-
-        }
-
-        public Pellet(int _x, int _y, int _size, int _score, Color _colour)
+        public PowerPellet(int _x, int _y, int _size, int _score, Color _colour)
         {
             rect.X = _x;
             rect.Y = _y;

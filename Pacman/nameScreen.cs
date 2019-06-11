@@ -122,6 +122,12 @@ namespace Pacman
                         // save the highscores that are in the list
                         HighScreen.saveHighscores();
 
+                        // only load highscores if there aren't any in the list 
+                        if (HighScreen.highscores == null)
+                        {
+                            HighScreen.loadHighscores();
+                        }
+
                         // change to the highscore screen
                         Form1.ChangeScreen(this, "HighScreen");
 
