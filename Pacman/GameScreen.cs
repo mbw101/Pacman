@@ -42,8 +42,9 @@ namespace Pacman
          
         int counter = 0;
         int previousCounter = 0;
-        bool animate = false, collided = false, moved = false;
+        bool animate = false, collided = false;
         int tmpXSpeed, tmpYSpeed;
+        int eatingCounter = 0;
 
         // pens, brushes, graphics
         SolidBrush sb = new SolidBrush(Color.Yellow);
@@ -445,6 +446,9 @@ namespace Pacman
                 tmpYSpeed = player.getYSpeed();
             }
 
+            //edible timer
+            if (g.edible == true)
+
             // move pac-man
             player.move();
 
@@ -509,6 +513,7 @@ namespace Pacman
                     score += p.score;
                 }
             }
+
             // If any power pellets are collided
             // then remove it, add score, and make ghosts edible
             foreach (PowerPellet pp in powerPellets)
@@ -523,7 +528,10 @@ namespace Pacman
                     foreach (Ghost g in ghosts)
                     {
                         g.edible = true;
+                   
                     }
+
+                    
                 }
             }
 
@@ -660,7 +668,7 @@ namespace Pacman
                 
                 if (g.edible == true)
                 {
-                    sb.Color = Color.Blue;
+                    sb.Color = Color.DodgerBlue;
                 }
 
                 e.Graphics.FillRectangle(sb, g.rect);
