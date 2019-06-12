@@ -505,8 +505,11 @@ namespace Pacman
                 //edible timer
                 if (g.edible == true)
                 {
+
+
+
                     edibleCounter++;
-                    if (edibleCounter >= 30 * 10)
+                    if (edibleCounter >= 30 * 15)
                     {
                         g.edible = false;
                         edibleCounter = 0;
