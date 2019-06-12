@@ -44,7 +44,7 @@ namespace Pacman
         int previousCounter = 0;
         bool animate = false, collided = false;
         int tmpXSpeed, tmpYSpeed;
-        int eatingCounter = 0;
+        int edibleCounter = 0;
 
         // pens, brushes, graphics
         SolidBrush sb = new SolidBrush(Color.Yellow);
@@ -457,8 +457,6 @@ namespace Pacman
                 tmpYSpeed = player.getYSpeed();
             }
 
-            //edible timer
-            //if (g.edible == true)
 
             // move pac-man
             player.move();
@@ -509,6 +507,17 @@ namespace Pacman
                         automatically change direction */
 
                         g.changeDirection(player, tempX2, tempY2);
+                    }
+                }
+
+                //edible timer
+                if (g.edible == true)
+                {
+                    edibleCounter++;
+                    if (edibleCounter >= 30 * 10)
+                    {
+                        g.edible = false;
+                        edibleCounter = 0;
                     }
                 }
             }
