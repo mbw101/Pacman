@@ -80,6 +80,10 @@ namespace Pacman
 
             PowerPellet pp = new PowerPellet(128, 40, 20, 50, Color.Wheat);
             powerPellets.Add(pp);
+            PowerPellet pp2 = new PowerPellet(50, 500, 20, 50, Color.Wheat);
+            powerPellets.Add(pp2);
+            PowerPellet pp3 = new PowerPellet(760, 42, 20, 50, Color.Wheat);
+            powerPellets.Add(pp3);
 
             for (int i = 1; i < 10; i++)
             {
@@ -96,7 +100,7 @@ namespace Pacman
                 Pellet p = new Pellet(132, 46 + (i * 20), 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
-            for (int i = 1; i < 16; i++)
+            for (int i = 1; i < 15; i++)
             {
                 Pellet p = new Pellet(132, 206 + (i * 20), 10, 10, Color.Yellow);
                 pellets.Add(p);
@@ -111,7 +115,7 @@ namespace Pacman
                 Pellet p = new Pellet(30, 330 + (i * 20), 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
-            for (int i = 1; i < 7; i++)
+            for (int i = 1; i < 6; i++)
             {
                 Pellet p = new Pellet(55, 385 + (i * 20), 10, 10, Color.Yellow);
                 pellets.Add(p);
