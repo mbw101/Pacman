@@ -84,6 +84,8 @@ namespace Pacman
             powerPellets.Add(pp2);
             PowerPellet pp3 = new PowerPellet(760, 42, 20, 50, Color.Wheat);
             powerPellets.Add(pp3);
+            PowerPellet pp4 = new PowerPellet(758, 372, 20, 50, Color.Wheat);
+            powerPellets.Add(pp4);
 
             for (int i = 1; i < 10; i++)
             {
@@ -280,6 +282,11 @@ namespace Pacman
                 Pellet p = new Pellet(735, 410 + (i * 20), 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
+            for (int i = 0; i < 3; i++)
+            {
+                Pellet p = new Pellet(695 + (i * 20), 220, 10, 10, Color.Yellow);
+                pellets.Add(p);
+            }
 
             // create ghosts
             Ghost g = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "aggressive", Color.Red);
@@ -449,6 +456,7 @@ namespace Pacman
                 tmpXSpeed = player.getXSpeed();
                 tmpYSpeed = player.getYSpeed();
             }
+
 
             // move pac-man
             player.move();

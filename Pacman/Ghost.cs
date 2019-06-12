@@ -57,19 +57,19 @@ namespace Pacman
                 // the player is below 
                 if (player.rect.Y > rect.Y)
                 {
-                    if (randGen.Next(0, 1) > 0)
+                    if (randGen.Next(0, 10) > 5)
                     {
                         if (xSpeed == 0)
-                        {
-                            xSpeed = GameScreen.SPEED;
-                            ySpeed = 0;
-                        }
-                        else
-                        {
-                            ySpeed = 0;
-                            xSpeed = -xSpeed;
-                        }
+                        xSpeed = GameScreen.SPEED;
+                        ySpeed = 0;
 
+                        // set position back to when the ghost isn't colliding
+                        setPosition(tempX, tempY);
+                    }
+                    else if (randGen.Next(0, 10) > 8)
+                    {
+                        xSpeed = -xSpeed;
+                        ySpeed = 0;
                         // set position back to when the ghost isn't colliding
                         setPosition(tempX, tempY);
                     }
@@ -90,12 +90,21 @@ namespace Pacman
                         setPosition(tempX, tempY);
                     }
                 }
+                // the player is above the ghost
                 else if (player.rect.Y <= rect.Y)
                 {
-                    if (randGen.Next(0, 1) > 0)
+                    if (randGen.Next(0, 10) > 5)
                     {
                         ySpeed = -ySpeed;
+                        xSpeed = 0;
 
+                        // set position back to when the ghost isn't colliding
+                        setPosition(tempX, tempY);
+                    }
+                    else if (randGen.Next(0, 10) > 8)
+                    {
+                        xSpeed = -xSpeed;
+                        ySpeed = 0;
                         // set position back to when the ghost isn't colliding
                         setPosition(tempX, tempY);
                     }
@@ -117,6 +126,10 @@ namespace Pacman
                         setPosition(tempX, tempY);
                     }
                 }
+            }
+            else if (behavior == "sneaky")
+            {
+
             }
             else
             {
