@@ -42,8 +42,9 @@ namespace Pacman
          
         int counter = 0;
         int previousCounter = 0;
-        bool animate = false, collided = false, moved = false;
+        bool animate = false, collided = false;
         int tmpXSpeed, tmpYSpeed;
+        int eatingCounter = 0;
 
         // pens, brushes, graphics
         SolidBrush sb = new SolidBrush(Color.Yellow);
@@ -449,6 +450,9 @@ namespace Pacman
                 tmpYSpeed = player.getYSpeed();
             }
 
+            //edible timer
+            if (g.edible == true)
+
             // move pac-man
             player.move();
 
@@ -513,6 +517,7 @@ namespace Pacman
                     score += p.score;
                 }
             }
+
             // If any power pellets are collided
             // then remove it, add score, and make ghosts edible
             foreach (PowerPellet pp in powerPellets)
@@ -527,7 +532,10 @@ namespace Pacman
                     foreach (Ghost g in ghosts)
                     {
                         g.edible = true;
+                   
                     }
+
+                    
                 }
             }
 
@@ -584,6 +592,7 @@ namespace Pacman
             Refresh();
         }
 
+        #region Draw Methods weehaw
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             // set yello for drawing pac-man
@@ -660,6 +669,11 @@ namespace Pacman
             foreach (Ghost g in ghosts)
             {
                 sb.Color = g.colour;
+                
+                if (g.edible == true)
+                {
+                    sb.Color = Color.DodgerBlue;
+                }
 
                 e.Graphics.FillRectangle(sb, g.rect);
             }
@@ -668,7 +682,7 @@ namespace Pacman
             sb.Color = Color.White;
             e.Graphics.DrawString("Score: " + score, textFont, sb, new Point(500, Height - 40));
         }
-
+        #endregion
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
