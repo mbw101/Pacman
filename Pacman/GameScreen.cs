@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Media;
 using System.Xml;
 using System.Threading;
+using System.IO;
 
 namespace Pacman
 {
@@ -25,6 +26,8 @@ namespace Pacman
 
         const int ghostX = 380;
         const int ghostY = 196;
+        const int ghostBoxX = 370;
+        const int ghostBoxY = 265;
 
         // characters
         PacMan player = new PacMan(startX, startY, 32, -SPEED, 0, 3);
@@ -32,14 +35,15 @@ namespace Pacman
 
         // sounds
         SoundPlayer death = new SoundPlayer(Properties.Resources.pacman_death);
-        
+        System.Windows.Media.MediaPlayer munch = new System.Windows.Media.MediaPlayer();
+
         List<Pellet> pellets = new List<Pellet>();
         List<PowerPellet> powerPellets = new List<PowerPellet>();
         List<Pellet> removePellets = new List<Pellet>();
         List<PowerPellet> removePowerPellets = new List<PowerPellet>();
         List<Wall> walls = new List<Wall>();
         List<Ghost> ghosts = new List<Ghost>();
-         
+
         int counter = 0;
         int previousCounter = 0;
         bool animate = false, collided = false;
@@ -59,19 +63,16 @@ namespace Pacman
             // create text graphics
             textFont = new Font("Verdana", 18, FontStyle.Regular);
 
+            // create munch sound
+            munch.Open(new Uri(Application.StartupPath + "/Resources/pacman_chomp.wav"));
+
             initLevel();
         }
 
-        public void initLevel()
+        public void createPellets()
         {
-            // reset score
-            score = 0;
-
-            // set the temp x and y of pacman
-            tmpXSpeed = player.getXSpeed();
-            tmpYSpeed = player.getYSpeed();
-
             // create pellets
+            #region Pellets
             for (int i = 1; i < 6; i++)
             {
                 Pellet p = new Pellet(12 + (i * 20), 46, 10, 10, Color.Yellow);
@@ -287,15 +288,13 @@ namespace Pacman
                 Pellet p = new Pellet(695 + (i * 20), 220, 10, 10, Color.Yellow);
                 pellets.Add(p);
             }
+            #endregion 
+        }
 
-            // create ghosts
-            Ghost g = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "aggressive", Color.Red);
-        
-            ghosts.Clear();
-            ghosts.Add(g);
-
+        public void createWalls()
+        {
             // create walls
-
+            #region walls
             //outer shell
             Wall w = new Wall(0, 14, 800, 16, Color.Blue);
             Wall w2 = new Wall(0, 530, 800, 16, Color.Blue);
@@ -350,6 +349,7 @@ namespace Pacman
             Wall w45 = new Wall(420, 70, 158, 22, Color.White);
             Wall w46 = new Wall(320, 132, 160, 60, Color.White);
 
+            // add walls to the list
             walls.Add(w);
             walls.Add(w2);
             walls.Add(w3);
@@ -399,16 +399,43 @@ namespace Pacman
             walls.Add(w44);
             walls.Add(w45);
             walls.Add(w46);
+            #endregion
         }
 
-        public void GameOver()
+        public void initLevel()
         {
+            // reset score
+            score = 0;
 
+            // set the temp x and y of pacman
+            tmpXSpeed = player.getXSpeed();
+            tmpYSpeed = player.getYSpeed();
+
+            createPellets();
+
+            // create ghosts
+            Ghost g = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "aggressive", Color.Red);
+        
+            ghosts.Clear();
+            ghosts.Add(g);
+
+            createWalls();
         }
 
-        public void saveHighscores()
+        // does this after all pellets are cleared
+        public void resetLevel()
         {
-            XmlWriter writer = XmlWriter.Create("Resources//highscores.xml");
+            // set the temp x and y of pacman
+            tmpXSpeed = player.getXSpeed();
+            tmpYSpeed = player.getYSpeed();
+
+            createPellets();
+
+            // create ghosts
+            Ghost g = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "aggressive", Color.Red);
+
+            ghosts.Clear();
+            ghosts.Add(g);
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -417,6 +444,8 @@ namespace Pacman
             int tempX = player.rect.X;
             int tempY = player.rect.Y;
 
+            // portal code for when he goes
+            // through a portal
             if (tempX < -32)
             {
                 tempX = 780;
@@ -426,6 +455,7 @@ namespace Pacman
                 tempX = 3;
             }
 
+            // set position to temp positions
             player.setPosition(tempX, tempY);
 
             int tempX2 = ghosts[0].rect.X;
@@ -457,9 +487,6 @@ namespace Pacman
                 tmpYSpeed = player.getYSpeed();
             }
 
-            //edible timer
-            //if (g.edible == true)
-
             // move pac-man
             player.move();
 
@@ -469,20 +496,26 @@ namespace Pacman
 
                 if (player.Collision(g) && !g.edible)
                 {
+                    // play death sound
                     death.Play();
 
                     Thread.Sleep(2000);
 
+                    // decrease lives
                     player.lives--;
 
+                    // set position back to original
                     player.setPosition(startX, startY);
 
+                    // reset ghosts positions
                     g.setPosition(ghostX, ghostY);
                     g.setSpeed(GHOST_SPEED, 0);
 
+                    // if there are no more lives
+                    // go to namescreen
                     if(player.lives == 0)
                     {
-                        // TODO: Fix xml file
+                        // change to the namescreen
                         Form1.ChangeScreen(this, "NameScreen");
                         gameTimer.Enabled = false;
                     }
@@ -504,10 +537,8 @@ namespace Pacman
                 {
                     if (g.collision(wall))
                     {
-                        /* TODO: Add a counter and once 
-                        it gets over a certain amount,
-                        automatically change direction */
-
+                        // run the collision method of the ghost
+                        // when it hits a wall
                         g.changeDirection(player, tempX2, tempY2);
                     }
                 }
@@ -521,6 +552,8 @@ namespace Pacman
                 {
                     removePellets.Add(p);
 
+                    munch.Play();
+                    
                     score += p.score;
                 }
             }
@@ -594,6 +627,12 @@ namespace Pacman
                 animate = false;
 
                 previousCounter = counter = 0;
+            }
+
+            // reset level when all pellets are gone
+            if (pellets.Count == 0 && powerPellets.Count == 0)
+            {
+                resetLevel();
             }
 
             Refresh();

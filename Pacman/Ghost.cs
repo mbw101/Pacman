@@ -60,7 +60,7 @@ namespace Pacman
                     if (randGen.Next(0, 10) > 5)
                     {
                         if (xSpeed == 0)
-                        xSpeed = GameScreen.SPEED;
+                        xSpeed = GameScreen.GHOST_SPEED;
                         ySpeed = 0;
 
                         // set position back to when the ghost isn't colliding
