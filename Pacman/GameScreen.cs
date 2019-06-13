@@ -283,9 +283,10 @@ namespace Pacman
 
             // create ghosts
             Ghost g = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "aggressive", Color.Red);
-        
+            Ghost g2 = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "patrol", Color.Lime);
             ghosts.Clear();
             ghosts.Add(g);
+            ghosts.Add(g2);
 
             // create walls
 
@@ -699,15 +700,19 @@ namespace Pacman
             switch (e.KeyCode)
             {
                 case Keys.A:
+                case Keys.Left:
                     ADown = true;
                     break;
                 case Keys.D:
+                case Keys.Right:
                     DDown = true;
                     break;
                 case Keys.W:
+                case Keys.Up:
                     WDown = true;
                     break;
                 case Keys.S:
+                case Keys.Down:
                     SDown = true;
                     break;
                 case Keys.C:
@@ -730,15 +735,19 @@ namespace Pacman
             switch (e.KeyCode)
             {
                 case Keys.A:
+                case Keys.Left:
                     ADown = false;
                     break;
                 case Keys.D:
+                case Keys.Right:
                     DDown = false;
                     break;
                 case Keys.W:
+                case Keys.Up:
                     WDown = false;
                     break;
                 case Keys.S:
+                case Keys.Down:
                     SDown = false;
                     break;
                 default:

@@ -61,7 +61,7 @@ namespace Pacman
                     {
                         if (xSpeed == 0)
                         {
-                            xSpeed = GameScreen.SPEED;
+                            xSpeed = GameScreen.GHOST_SPEED;
                             ySpeed = 0;
                         }
                         else
@@ -117,6 +117,11 @@ namespace Pacman
                         setPosition(tempX, tempY);
                     }
                 }
+            }
+            if (behavior == "patrol")
+            {
+                xSpeed = GameScreen.GHOST_SPEED;
+                ySpeed = 0;
             }
             else
             {
