@@ -39,45 +39,42 @@
             // 
             // firstLabel
             // 
-            this.firstLabel.AutoSize = true;
             this.firstLabel.BackColor = System.Drawing.Color.AliceBlue;
-            this.firstLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstLabel.Location = new System.Drawing.Point(187, 239);
+            this.firstLabel.Font = new System.Drawing.Font("monoeger 05_55", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firstLabel.Location = new System.Drawing.Point(266, 239);
             this.firstLabel.Name = "firstLabel";
-            this.firstLabel.Size = new System.Drawing.Size(109, 108);
+            this.firstLabel.Size = new System.Drawing.Size(68, 80);
             this.firstLabel.TabIndex = 0;
             this.firstLabel.Text = "A";
             // 
             // secondLabel
             // 
-            this.secondLabel.AutoSize = true;
             this.secondLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.secondLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.secondLabel.Location = new System.Drawing.Point(335, 239);
+            this.secondLabel.Font = new System.Drawing.Font("monoeger 05_55", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.secondLabel.Location = new System.Drawing.Point(366, 239);
             this.secondLabel.Name = "secondLabel";
-            this.secondLabel.Size = new System.Drawing.Size(109, 108);
+            this.secondLabel.Size = new System.Drawing.Size(68, 80);
             this.secondLabel.TabIndex = 1;
             this.secondLabel.Text = "A";
             // 
             // thirdLabel
             // 
-            this.thirdLabel.AutoSize = true;
             this.thirdLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.thirdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.thirdLabel.Location = new System.Drawing.Point(485, 239);
+            this.thirdLabel.Font = new System.Drawing.Font("monoeger 05_55", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thirdLabel.Location = new System.Drawing.Point(466, 239);
             this.thirdLabel.Name = "thirdLabel";
-            this.thirdLabel.Size = new System.Drawing.Size(109, 108);
+            this.thirdLabel.Size = new System.Drawing.Size(68, 80);
             this.thirdLabel.TabIndex = 2;
-            this.thirdLabel.Text = "A";
+            this.thirdLabel.Text = "A\r\n";
             // 
             // scoreLabel
             // 
             this.scoreLabel.AutoSize = true;
-            this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreLabel.Font = new System.Drawing.Font("mono 07_55", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scoreLabel.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.scoreLabel.Location = new System.Drawing.Point(227, 21);
+            this.scoreLabel.Location = new System.Drawing.Point(191, 10);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(317, 55);
+            this.scoreLabel.Size = new System.Drawing.Size(389, 57);
             this.scoreLabel.TabIndex = 4;
             this.scoreLabel.Text = "Your score is ";
             // 
@@ -90,11 +87,12 @@
             // saveLabel
             // 
             this.saveLabel.AutoSize = true;
-            this.saveLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.saveLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveLabel.BackColor = System.Drawing.Color.Black;
+            this.saveLabel.Font = new System.Drawing.Font("monooge 05_56", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveLabel.ForeColor = System.Drawing.Color.Blue;
             this.saveLabel.Location = new System.Drawing.Point(575, 489);
             this.saveLabel.Name = "saveLabel";
-            this.saveLabel.Size = new System.Drawing.Size(196, 73);
+            this.saveLabel.Size = new System.Drawing.Size(125, 36);
             this.saveLabel.TabIndex = 3;
             this.saveLabel.Text = "Save ";
             // 

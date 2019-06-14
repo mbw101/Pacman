@@ -243,12 +243,14 @@
             // backButton
             // 
             this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.backButton.Font = new System.Drawing.Font("monooge 05_56", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.ForeColor = System.Drawing.Color.Blue;
+            this.backButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.backButton.Location = new System.Drawing.Point(67, 518);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(116, 35);
+            this.backButton.Size = new System.Drawing.Size(116, 44);
             this.backButton.TabIndex = 0;
-            this.backButton.Text = "Go Back";
+            this.backButton.Text = "Back";
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             this.backButton.Enter += new System.EventHandler(this.backButton_Enter);
