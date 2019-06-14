@@ -418,7 +418,7 @@ namespace Pacman
 
             // create ghosts
             Ghost g = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "aggressive", Color.Red);
-            Ghost g2 = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "patrol", Color.Lime);
+            Ghost g2 = new Ghost(ghostBoxX, ghostBoxY, 32, GHOST_SPEED, 0, 200, "patrol", Color.Lime);
             ghosts.Clear();
             ghosts.Add(g);
             ghosts.Add(g2);
@@ -436,9 +436,8 @@ namespace Pacman
             createPellets();
 
             // create ghosts
-            // create ghosts
             Ghost g = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "aggressive", Color.Red);
-            Ghost g2 = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "patrol", Color.Lime);
+            Ghost g2 = new Ghost(ghostBoxX, ghostBoxY, 32, GHOST_SPEED, 0, 200, "patrol", Color.Lime);
             ghosts.Clear();
             ghosts.Add(g);
             ghosts.Add(g2);
@@ -514,15 +513,15 @@ namespace Pacman
                     player.setPosition(startX, startY);
 
                     // reset ghosts positions
-                    foreach (Ghost ghost in ghosts)
-                    {
-                        ghost.setPosition(ghostX, ghostY);
-                        ghost.setSpeed(GHOST_SPEED, 0);
-                    }  
+                    ghosts[0].setPosition(ghostX, ghostY);
+                    ghosts[0].setSpeed(GHOST_SPEED, 0);
+
+                    ghosts[1].setPosition(ghostBoxX, ghostBoxY);
+                    ghosts[1].setSpeed(GHOST_SPEED, 0);
 
                     // if there are no more lives
                     // go to namescreen
-                    if(player.lives == 0)
+                    if (player.lives == 0)
                     {
                         // change to the namescreen
                         Form1.ChangeScreen(this, "NameScreen");
@@ -555,9 +554,6 @@ namespace Pacman
                 //edible timer
                 if (g.edible == true)
                 {
-
-
-
                     edibleCounter++;
                     if (edibleCounter >= 30 * 15)
                     {
