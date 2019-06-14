@@ -291,8 +291,11 @@ namespace Pacman
             #endregion 
         }
 
+            
+
         public void createWalls()
         {
+
             // create walls
             #region walls
             //outer shell
@@ -415,9 +418,10 @@ namespace Pacman
 
             // create ghosts
             Ghost g = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "aggressive", Color.Red);
-        
+            Ghost g2 = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "patrol", Color.Lime);
             ghosts.Clear();
             ghosts.Add(g);
+            ghosts.Add(g2);
 
             createWalls();
         }
@@ -432,10 +436,12 @@ namespace Pacman
             createPellets();
 
             // create ghosts
+            // create ghosts
             Ghost g = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "aggressive", Color.Red);
-
+            Ghost g2 = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "patrol", Color.Lime);
             ghosts.Clear();
             ghosts.Add(g);
+            ghosts.Add(g2);
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -546,8 +552,11 @@ namespace Pacman
                 //edible timer
                 if (g.edible == true)
                 {
+
+
+
                     edibleCounter++;
-                    if (edibleCounter >= 30 * 10)
+                    if (edibleCounter >= 30 * 15)
                     {
                         g.edible = false;
                         edibleCounter = 0;
@@ -745,15 +754,19 @@ namespace Pacman
             switch (e.KeyCode)
             {
                 case Keys.A:
+                case Keys.Left:
                     ADown = true;
                     break;
                 case Keys.D:
+                case Keys.Right:
                     DDown = true;
                     break;
                 case Keys.W:
+                case Keys.Up:
                     WDown = true;
                     break;
                 case Keys.S:
+                case Keys.Down:
                     SDown = true;
                     break;
                 case Keys.C:
@@ -776,15 +789,19 @@ namespace Pacman
             switch (e.KeyCode)
             {
                 case Keys.A:
+                case Keys.Left:
                     ADown = false;
                     break;
                 case Keys.D:
+                case Keys.Right:
                     DDown = false;
                     break;
                 case Keys.W:
+                case Keys.Up:
                     WDown = false;
                     break;
                 case Keys.S:
+                case Keys.Down:
                     SDown = false;
                     break;
                 default:

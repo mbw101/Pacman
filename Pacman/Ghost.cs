@@ -59,17 +59,10 @@ namespace Pacman
                 {
                     if (randGen.Next(0, 10) > 5)
                     {
-                        if (xSpeed == 0)
                         xSpeed = GameScreen.GHOST_SPEED;
                         ySpeed = 0;
 
-                        // set position back to when the ghost isn't colliding
-                        setPosition(tempX, tempY);
-                    }
-                    else if (randGen.Next(0, 10) > 8)
-                    {
-                        xSpeed = -xSpeed;
-                        ySpeed = 0;
+
                         // set position back to when the ghost isn't colliding
                         setPosition(tempX, tempY);
                     }
@@ -130,6 +123,11 @@ namespace Pacman
             else if (behavior == "sneaky")
             {
 
+            }
+            if (behavior == "patrol")
+            {
+                xSpeed = GameScreen.GHOST_SPEED;
+                ySpeed = 0;
             }
             else
             {
