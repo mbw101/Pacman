@@ -12,6 +12,12 @@ using System.Xml;
 using System.Threading;
 using System.IO;
 
+/*
+ * Avery and Malcolm
+ * Pac-man
+ * June 14th, 2019
+ * */
+
 namespace Pacman
 {
     public partial class GameScreen : UserControl
