@@ -514,8 +514,11 @@ namespace Pacman
                     player.setPosition(startX, startY);
 
                     // reset ghosts positions
-                    g.setPosition(ghostX, ghostY);
-                    g.setSpeed(GHOST_SPEED, 0);
+                    foreach (Ghost ghost in ghosts)
+                    {
+                        ghost.setPosition(ghostX, ghostY);
+                        ghost.setSpeed(GHOST_SPEED, 0);
+                    }  
 
                     // if there are no more lives
                     // go to namescreen
