@@ -30,8 +30,42 @@ namespace Pacman
             score = _score;
         }
 
-        public void move()
+        public void move(PacMan player)
         {
+            if (behavior == "patrol")
+            {
+                // move the green ghost
+                // up when he reaches (662, 500)
+                if ((rect.X >= 655) && (rect.Y >= 490))
+                {
+                    xSpeed = 0;
+                    ySpeed = -GameScreen.GHOST_SPEED;
+                }
+                else if ((rect.X >= 655) && (rect.Y <= 95))
+                {
+                    xSpeed = -GameScreen.GHOST_SPEED;
+                    ySpeed = 0;
+                }
+            }
+            else if (behavior == "aggressive")
+            {
+                if ((rect.X >= 100) && (rect.Y >= 495))
+                {
+                    xSpeed = GameScreen.GHOST_SPEED;
+                    ySpeed = 0;
+                }
+                if ((rect.X >= 485) && (rect.Y >= 495))
+                {
+                    xSpeed = 0;
+                    ySpeed = -GameScreen.GHOST_SPEED;
+                }
+                if ((rect.X >= 485) && (rect.Y <= 200))
+                {
+                    xSpeed = -GameScreen.GHOST_SPEED; 
+                    ySpeed = 0;
+                }
+            }
+
             rect.X += xSpeed;
             rect.Y += ySpeed;
         }
@@ -52,98 +86,59 @@ namespace Pacman
         // the direction that is choosen is based on the behavior
         public void changeDirection(PacMan player, int tempX, int tempY)
         {
+            // for the red ghost
             if (behavior == "aggressive")
             {
-                // the player is below 
-                if (player.rect.Y > rect.Y)
+                if (xSpeed == -GameScreen.GHOST_SPEED)
                 {
-                    if (randGen.Next(0, 10) > 5)
-                    {
-                        if (xSpeed == 0)
-                        {
-                            xSpeed = GameScreen.GHOST_SPEED;
-                            ySpeed = 0;
-                        }
-                        else
-                        {
-                            ySpeed = 0;
-                            xSpeed = -xSpeed;
-                        }
-                        xSpeed = GameScreen.SPEED;
-                        ySpeed = 0;
-
-                        // set position back to when the ghost isn't colliding
-                        setPosition(tempX, tempY);
-                    }
-                    else if (randGen.Next(0, 10) > 8)
-                    {
-                        xSpeed = -xSpeed;
-                        ySpeed = 0;
-                        // set position back to when the ghost isn't colliding
-                        setPosition(tempX, tempY);
-                    }
-                    else
-                    {
-                        if (ySpeed == 0)
-                        {
-                            // change direction
-                            xSpeed = 0;
-                            ySpeed = GameScreen.GHOST_SPEED;
-                        }
-                        else
-                        {
-                            ySpeed = -ySpeed;
-                        }
-
-                        // set position back to when the ghost isn't colliding
-                        setPosition(tempX, tempY);
-                    }
+                    xSpeed = 0;
+                    ySpeed = GameScreen.GHOST_SPEED;                  
                 }
-                // the player is above the ghost
-                else if (player.rect.Y <= rect.Y)
+                else if (ySpeed == -GameScreen.GHOST_SPEED)
                 {
-                    if (randGen.Next(0, 10) > 5)
-                    {
-                        ySpeed = -ySpeed;
-                        xSpeed = 0;
-
-                        // set position back to when the ghost isn't colliding
-                        setPosition(tempX, tempY);
-                    }
-                    else if (randGen.Next(0, 10) > 8)
-                    {
-                        xSpeed = -xSpeed;
-                        ySpeed = 0;
-                        // set position back to when the ghost isn't colliding
-                        setPosition(tempX, tempY);
-                    }
-                    else
-                    {
-                        // pac-man is to the left
-                        if (player.rect.X < rect.X)
-                        {
-                            ySpeed = 0;
-                            xSpeed = -GameScreen.GHOST_SPEED;
-                        }
-                        else
-                        {
-                            ySpeed = 0;
-                            xSpeed = GameScreen.GHOST_SPEED;
-                        }
-
-                        // set position back to when the ghost isn't colliding
-                        setPosition(tempX, tempY);
-                    }
+                    xSpeed = -GameScreen.GHOST_SPEED;
+                    ySpeed = 0;
                 }
+                else if (ySpeed == GameScreen.GHOST_SPEED)
+                {
+                    xSpeed = -GameScreen.GHOST_SPEED;
+                    ySpeed = 0;
+                }
+                else if (xSpeed == GameScreen.GHOST_SPEED)
+                {
+                    xSpeed = -GameScreen.GHOST_SPEED;
+                    ySpeed = 0; 
+                }
+
+                // set position of ghost to temp position
+                setPosition(tempX, tempY);
             }
-            if (behavior == "patrol")
+            // for the green ghost
+            else if (behavior == "patrol")
             {
-                xSpeed = GameScreen.GHOST_SPEED;
-                ySpeed = 0;
-            }
-            else
-            {
-                xSpeed = -xSpeed;
+                if (xSpeed == GameScreen.GHOST_SPEED)
+                {
+                    xSpeed = 0;
+                    ySpeed = -GameScreen.GHOST_SPEED;
+                }
+                else if (ySpeed == -GameScreen.GHOST_SPEED)
+                {
+                    xSpeed = -GameScreen.GHOST_SPEED;
+                    ySpeed = 0;
+                }
+                else if (xSpeed == -GameScreen.GHOST_SPEED)
+                {
+                    xSpeed = 0;
+                    ySpeed = GameScreen.GHOST_SPEED;
+                }
+                else if (ySpeed == GameScreen.GHOST_SPEED)
+                {
+                    xSpeed = GameScreen.GHOST_SPEED;
+                    ySpeed = 0;
+                }
+
+                // set position back to when the ghost isn't colliding
+                setPosition(tempX, tempY);
             }
         }
 
