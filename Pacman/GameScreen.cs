@@ -26,8 +26,8 @@ namespace Pacman
         public const int SPEED = 3;
         public const int GHOST_SPEED = 2;
         public const int GHOST_EAT_SPEED = 1;
-        public const int startX = 384;
-        public const int startY = 336;
+        public const int startX = 384; 
+        public const int startY = 100; // 336
         public static int score = 0;
 
         const int ghostX = 380;
@@ -55,6 +55,7 @@ namespace Pacman
         bool animate = false, collided = false;
         int tmpXSpeed, tmpYSpeed;
         int edibleCounter = 0;
+        int ghostWaitCounter = 0;
 
         // pens, brushes, graphics
         SolidBrush sb = new SolidBrush(Color.Yellow);
@@ -301,7 +302,6 @@ namespace Pacman
 
         public void createWalls()
         {
-
             // create walls
             #region walls
             //outer shell
@@ -423,7 +423,7 @@ namespace Pacman
             createPellets();
 
             // create ghosts
-            Ghost g = new Ghost(ghostX, ghostY, 32, GHOST_SPEED, 0, 200, "aggressive", Color.Red);
+            Ghost g = new Ghost(ghostX, ghostY, 32, -GHOST_SPEED, 0, 200, "aggressive", Color.Red);
             Ghost g2 = new Ghost(ghostBoxX, ghostBoxY, 32, GHOST_SPEED, 0, 200, "patrol", Color.Lime);
             ghosts.Clear();
             ghosts.Add(g);
@@ -471,6 +471,8 @@ namespace Pacman
 
             int tempX2 = ghosts[0].rect.X;
             int tempY2 = ghosts[0].rect.Y;
+            int tempX3 = ghosts[1].rect.X;
+            int tempY3 = ghosts[1].rect.Y;
 
             // set pac-man's direction
             if (WDown)
@@ -503,7 +505,24 @@ namespace Pacman
 
             foreach (Ghost g in ghosts)
             {
-                g.move();
+                // increase counter for the green ghost to enter arena
+                ghostWaitCounter++;
+
+                // move the ghost if red or if the green is ready to leave arena
+                if ((g == ghosts[1] && ghostWaitCounter > 60 * 5))
+                {
+                    // move ghost outside of box
+                    if ((g.rect.X == ghostBoxX) && (g.rect.Y == ghostBoxY))
+                    {
+                        g.setPosition(ghostX, ghostY);
+                    }
+
+                    g.move(player);
+                }
+                else if (g == ghosts[0])
+                {
+                    g.move(player);
+                }
 
                 if (player.Collision(g) && !g.edible)
                 {
@@ -518,9 +537,12 @@ namespace Pacman
                     // set position back to original
                     player.setPosition(startX, startY);
 
+                    // reset green ghost timer
+                    ghostWaitCounter = 0;
+
                     // reset ghosts positions
                     ghosts[0].setPosition(ghostX, ghostY);
-                    ghosts[0].setSpeed(GHOST_SPEED, 0);
+                    ghosts[0].setSpeed(-GHOST_SPEED, 0);
 
                     ghosts[1].setPosition(ghostBoxX, ghostBoxY);
                     ghosts[1].setSpeed(GHOST_SPEED, 0);
@@ -541,8 +563,24 @@ namespace Pacman
                     score += g.score;
                     Thread.Sleep(250);
 
-                    g.setPosition(ghostX, ghostY);
-                    g.setSpeed(GHOST_SPEED, 0);
+                    // reset counter if green ghost
+                    if (g == ghosts[1])
+                    {
+                        ghostWaitCounter = 0;
+                    }
+
+                    // red ghost
+                    if (g == ghosts[0])
+                    {
+                        g.setPosition(ghostX, ghostY);
+                        g.setSpeed(-GHOST_SPEED, 0);
+                    }
+                    // green ghost
+                    else
+                    {
+                        g.setPosition(ghostBoxX, ghostBoxY);
+                        g.setSpeed(GHOST_SPEED, 0);
+                    }             
 
                     g.edible = false;
                 }
@@ -553,7 +591,14 @@ namespace Pacman
                     {
                         // run the collision method of the ghost
                         // when it hits a wall
-                        g.changeDirection(player, tempX2, tempY2);
+                        if (g == ghosts[0])
+                        {
+                            g.changeDirection(player, tempX2, tempY2);
+                        }
+                        else
+                        {
+                            g.changeDirection(player, tempX3, tempY3);
+                        }
                     }
                 }
 
@@ -561,9 +606,9 @@ namespace Pacman
                 if (g.edible == true)
                 {
                     edibleCounter++;
-                    if (edibleCounter >= 30 * 15)
+                    if (edibleCounter >= 30 * 16)
                     {
-                        g.edible = false;
+                        ghosts[0].edible = ghosts[1].edible = false;
                         edibleCounter = 0;
                     }
                 }
@@ -598,9 +643,7 @@ namespace Pacman
                     {
                         g.edible = true;
                    
-                    }
-
-                    
+                    }                   
                 }
             }
 
