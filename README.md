@@ -6,4 +6,4 @@ After all pellets are eaten, the level resets. High scores are saved in a highsc
 ## Demo
 ![Pac-Man Demo](pacmanDemo.gif)
 
-You will need to use Microsoft Visual Studio 15 to build and run.
+You will need to use Microsoft Visual Studio 15 or above to build and run.
